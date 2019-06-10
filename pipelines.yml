@@ -8,14 +8,14 @@ resources:
   - name: build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: deepika_artifactory
+      sourceArtifactory: art
       buildName: go_example_publish
       buildNumber: 1
       
   - name: myReleaseBundle
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: deepika_artifactory
+      sourceArtifactory: art
       name: test_release
       version: v1.0.0
  
@@ -32,7 +32,7 @@ pipelines:
           inputResources:
             - name: artifactory_go_example
           integrations:
-            - name: deepika_artifactory
+            - name: art
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
@@ -43,7 +43,7 @@ pipelines:
         type: PublishBuildInfo
         configuration:
           integrations:
-            - name: deepika_artifactory
+            - name: art
           inputSteps:
             - name: publish_go
           outputResources:
@@ -53,7 +53,7 @@ pipelines:
         configuration:
           targetRepo: deepika-promoted
           integrations:
-            - name: deepika_artifactory
+            - name: art
           inputSteps:
             - name: publish
       - name: bundle
@@ -65,7 +65,7 @@ pipelines:
           inputResources:
             - name: build_info
           integrations:
-            - name: deepika_artifactory
+            - name: art
           inputSteps:
             - name: publish
           outputResources:
