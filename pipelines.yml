@@ -5,22 +5,42 @@ resources:
       path: deepikasl/artifactory-go-example
       gitProvider: deepikaGithub
       
-  - name: build_info
+  - name: go_build_info_publish
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
-      buildName: go_example_publish
+      sourceArtifactory: kermit_art
+      buildName: go_example_build_publish
       buildNumber: 1
-      
-  - name: myReleaseBundle
+  - name: unsigned_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: art
-      name: test_release
-      version: v1.0.0
- 
+      sourceArtifactory: kermit_art
+      name: go_test_bundle_publish
+      version: v1.0
+  - name: signed_release_bundle_go_publish
+    type: ReleaseBundle
+    configuration:
+      sourceArtifactory: kermit_art
+      name: go_test_bundle_publish
+      version: v1.0
+  - name: promoted_go_build_info_go_publish
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: kermit_art
+      buildName: promote_go_build_publish
+      buildNumber: 1
+  - name: distribution_rule_go_publish
+    type: DistributionRule
+    configuration:
+      sourceArtifactory: kermit_art
+      cityName: "*"
+      serviceName: "*"
+      siteName: "*"
+      countryCodes:
+        - CN
+
 pipelines:
-  - name: go_example_publish
+  - name: go_publish_example
     steps:
       - name: publish_go
         type: GoPublish
@@ -32,42 +52,61 @@ pipelines:
           inputResources:
             - name: artifactory_go_example
           integrations:
-            - name: art
+            - name: kermit_art
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version
-      - name: publish
+      - name: publish_build_info
         type: PublishBuildInfo
         configuration:
           integrations:
-            - name: art
+            - name: kermit_art
           inputSteps:
             - name: publish_go
           outputResources:
-            - name: build_info
-      - name: promote
+            - name: go_build_info_publish
+      - name: promote_build_go
         type: PromoteBuild
         configuration:
           targetRepo: deepika-promoted
           integrations:
-            - name: art
+            - name: kermit_art
           inputSteps:
-            - name: publish
-      - name: bundle
+            - name: publish_build_info
+          outputResources:
+            - name: promoted_go_build_info_go_publish
+      - name: bundle_go_publish
         type: CreateReleaseBundle
         configuration:
+          dryRun: false
           description: "This is to test GoPublish -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
-          releaseBundleName: test_release
-          releaseBundleVersion: v1.0.0
+          releaseBundleName: go_publish_test_build
+          releaseBundleVersion: v1.0
+          sign: false
           inputResources:
-            - name: build_info
+            - name: promoted_go_build_info_go_publish
           integrations:
-            - name: art
-          inputSteps:
-            - name: publish
+            - name: kermit_art
           outputResources:
-            - name: myReleaseBundle   # a ReleaseBundle resource 
-            
+            - name: unsigned_release_bundle_go_publish
+      - name: sign_release_bundle_go_publish
+        type: SignReleaseBundle
+        configuration:
+          inputResources:
+            - name: unsigned_release_bundle_go_publish
+          integrations:
+            - name: kermit_art
+          outputResources:
+            - name: signed_release_bundle_go_publish
+      - name: distribute_signed_release_bundle
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: signed_release_bundle_go_publish
+            - name: distribution_rule_go_publish
+          integrations:
+            - name: kermit_art
