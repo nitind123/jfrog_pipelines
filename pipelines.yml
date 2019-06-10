@@ -16,13 +16,13 @@ resources:
     configuration:
       sourceArtifactory: kermit_art
       name: go_test_bundle
-      version: v1.1
+      version: v1.2
   - name: signed_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceArtifactory: kermit_art
       name: go_test_bundle
-      version: v1.1
+      version: v1.2
   - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
@@ -71,7 +71,7 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
-          targetRepo: deepika-promoted
+          targetRepo: promoted_go_test
           integrations:
             - name: kermit_art
           inputSteps:
@@ -84,7 +84,7 @@ pipelines:
           dryRun: false
           description: "This is to test GoPublish -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v1.1
+          releaseBundleVersion: v1.2
           sign: false
           inputResources:
             - name: promoted_go_build_info_go_publish
