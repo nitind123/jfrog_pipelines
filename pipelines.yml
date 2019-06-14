@@ -4,35 +4,35 @@ resources:
     configuration:
       path: deepikasl/artifactory-go-example
       gitProvider: deepikaGithub
-      
+
   - name: go_build_info_publish
     type: BuildInfo
     configuration:
-      sourceArtifactory: kermit_art
+      sourceArtifactory: art
       buildName: go_example_build_publish
       buildNumber: 1
   - name: unsigned_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: kermit_art
+      sourceArtifactory: art
       name: go_test_bundle
       version: v1.2
   - name: signed_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: kermit_art
+      sourceArtifactory: art
       name: go_test_bundle
       version: v1.2
   - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
-      sourceArtifactory: kermit_art
+      sourceArtifactory: art
       buildName: promote_go_build_publish
       buildNumber: 1
   - name: distribution_rule_go_publish
     type: DistributionRule
     configuration:
-      sourceArtifactory: kermit_art
+      sourceArtifactory: art
       cityName: "*"
       serviceName: "*"
       siteName: "*"
@@ -52,7 +52,7 @@ pipelines:
           inputResources:
             - name: artifactory_go_example
           integrations:
-            - name: kermit_art
+            - name: art
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
@@ -63,7 +63,7 @@ pipelines:
         type: PublishBuildInfo
         configuration:
           integrations:
-            - name: kermit_art
+            - name: art
           inputSteps:
             - name: publish_go
           outputResources:
@@ -73,7 +73,7 @@ pipelines:
         configuration:
           targetRepo: promoted_go_test
           integrations:
-            - name: kermit_art
+            - name: art
           inputSteps:
             - name: publish_build_info
           outputResources:
@@ -89,7 +89,7 @@ pipelines:
           inputResources:
             - name: promoted_go_build_info_go_publish
           integrations:
-            - name: kermit_art
+            - name: art
           outputResources:
             - name: unsigned_release_bundle_go_publish
       - name: sign_release_bundle_go_publish
@@ -98,7 +98,7 @@ pipelines:
           inputResources:
             - name: unsigned_release_bundle_go_publish
           integrations:
-            - name: kermit_art
+            - name: art
           outputResources:
             - name: signed_release_bundle_go_publish
       - name: distribute_signed_release_bundle
@@ -109,4 +109,4 @@ pipelines:
             - name: signed_release_bundle_go_publish
             - name: distribution_rule_go_publish
           integrations:
-            - name: kermit_art
+            - name: art
