@@ -66,7 +66,7 @@ pipelines:
             - name: build_go
           targetRepository: deepika-go
           integrations:
-            - name: deepika_artifactory
+            - name: art
       - name: publish_build_info_gb
         type: PublishBuildInfo
         configuration:
