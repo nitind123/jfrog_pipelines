@@ -16,13 +16,13 @@ resources:
     configuration:
       sourceArtifactory: art
       name: go_test_bundle
-      version: v1.2
+      version: v1.5
   - name: signed_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceArtifactory: art
       name: go_test_bundle
-      version: v1.2
+      version: v1.5
   - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
