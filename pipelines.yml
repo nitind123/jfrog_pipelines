@@ -43,7 +43,7 @@ pipelines:
   - name: go_publish_example
     steps:
       - name: publish_go
-        type: GoPublish
+        type: GoPublishModule
         configuration:
           sourceLocation: .
           version: v1.2.1
@@ -62,8 +62,6 @@ pipelines:
       - name: publish_build_info
         type: PublishBuildInfo
         configuration:
-          integrations:
-            - name: art
           inputSteps:
             - name: publish_go
           outputResources:
@@ -71,25 +69,23 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
-          targetRepo: promoted_go_test
+          targetRepository: promoted_go_test
           integrations:
             - name: art
-          inputSteps:
-            - name: publish_build_info
+          inputResources:
+            - name: go_build_info_publish
           outputResources:
             - name: promoted_go_build_info_go_publish
       - name: bundle_go_publish
         type: CreateReleaseBundle
         configuration:
           dryRun: false
-          description: "This is to test GoPublish -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
+          description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go_publish_test_build
           releaseBundleVersion: v1.2
           sign: false
           inputResources:
             - name: promoted_go_build_info_go_publish
-          integrations:
-            - name: art
           outputResources:
             - name: unsigned_release_bundle_go_publish
       - name: sign_release_bundle_go_publish
@@ -97,8 +93,6 @@ pipelines:
         configuration:
           inputResources:
             - name: unsigned_release_bundle_go_publish
-          integrations:
-            - name: art
           outputResources:
             - name: signed_release_bundle_go_publish
       - name: distribute_signed_release_bundle
