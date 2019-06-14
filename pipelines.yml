@@ -3,6 +3,8 @@ resources:
     type: GitRepo
     configuration:
       path: deepikasl/artifactory-go-example
+      branches:
+        include: GoBuild
       gitProvider: deepikaGithub
 
   - name: go_build_info_publish_gb
@@ -16,13 +18,13 @@ resources:
     configuration:
       sourceArtifactory: art
       name: go_test_bundle
-      version: v1.10
+      version: v1.15
   - name: signed_release_bundle_go_publish_gb
     type: ReleaseBundle
     configuration:
       sourceArtifactory: art
       name: go_test_bundle
-      version: v1.10
+      version: v1.15
   - name: promoted_go_build_info_go_publish_gb
     type: BuildInfo
     configuration:
@@ -40,7 +42,7 @@ resources:
         - CN
 
 pipelines:
-  - name: go_build_example
+  - name: go_build_pipeline_testing
     steps:
       - name: build_go
         type: GoBuild
@@ -48,7 +50,7 @@ pipelines:
           sourceLocation: .
           repository: deepika-go
           outputLocation: /tmp/dist
-          outputFile: hello
+          outputFile: hello_gb
           inputResources:
             - name: artifactory_go_example_gb
           integrations:
@@ -90,7 +92,7 @@ pipelines:
           dryRun: false
           description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v1.10
+          releaseBundleVersion: v1.15
           sign: false
           inputResources:
             - name: promoted_go_build_info_go_publish_gb
