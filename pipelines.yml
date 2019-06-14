@@ -49,17 +49,16 @@ pipelines:
           repository: deepika-go
           outputLocation: /tmp
           outputFile: hello
-          execution:
-            onStart:
-              - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
-              - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
-              - export PATH=$PATH:/usr/local/go/bin
-              - go version
-        requires:
-          resources:
-            - artifactory_go_example_gb
+          inputResources:
+            - name: artifactory_go_example_gb
           integrations:
-            - art
+            - name: art
+        execution:
+          onStart:
+            - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+            - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
+            - export PATH=$PATH:/usr/local/go/bin
+            - go version
       - name: push_go_binary
         type: PushArtifactoryPackage
         configuration:
