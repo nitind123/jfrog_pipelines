@@ -16,13 +16,13 @@ resources:
     configuration:
       sourceArtifactory: art
       name: go_test_bundle
-      version: v1.5
+      version: v1.6
   - name: signed_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceArtifactory: art
       name: go_test_bundle
-      version: v1.5
+      version: v1.6
   - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
@@ -82,7 +82,7 @@ pipelines:
           dryRun: false
           description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v1.5
+          releaseBundleVersion: v1.6
           sign: false
           inputResources:
             - name: promoted_go_build_info_go_publish
