@@ -47,7 +47,7 @@ pipelines:
         configuration:
           sourceLocation: .
           repository: deepika-go
-          outputLocation: /tmp
+          outputLocation: /tmp/dist
           outputFile: hello
           inputResources:
             - name: artifactory_go_example_gb
@@ -59,19 +59,19 @@ pipelines:
             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version
-      - name: push_go_binary
-        type: PushArtifactoryPackage
+      - name: publish_go_binary
+        type: GoPublishBinary
         configuration:
-          targetRepo: deepika-generic
-          integrations:
-            - name: art
           inputSteps:
             - name: build_go
+          targetRepository: deepika-go
+          integrations:
+            - name: deepika_artifactory
       - name: publish_build_info_gb
         type: PublishBuildInfo
         configuration:
           inputSteps:
-            - name: push_go_binary
+            - name: publish_go_binary
           outputResources:
             - name: go_build_info_publish_gb
       - name: promote_build_go
