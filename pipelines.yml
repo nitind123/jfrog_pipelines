@@ -73,7 +73,7 @@ pipelines:
           comment: "comment"
           status: "ready"
           copy: true
-          includeDependencies: true
+#           includeDependencies: true
           integrations:
             - name: art
           inputResources:
