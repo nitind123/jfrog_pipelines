@@ -70,6 +70,10 @@ pipelines:
         type: PromoteBuild
         configuration:
           targetRepository: promoted_go_test
+          comment: "this is a comment"
+          status: "some status"
+          copy: true
+          includeDependencies: true
           integrations:
             - name: art
           inputResources:
