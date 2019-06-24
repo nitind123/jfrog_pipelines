@@ -72,7 +72,7 @@ pipelines:
           targetRepository: promoted_go_test
           comment: "comment"
           status: "ready"
-#           copy: true
+          copy: true
 #           includeDependencies: true
           integrations:
             - name: art
