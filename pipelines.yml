@@ -70,8 +70,8 @@ pipelines:
         type: PromoteBuild
         configuration:
           targetRepository: promoted_go_test
-#           comment: "comment"
-#           status: "ready"
+          comment: "comment"
+          status: "ready"
           copy: true
           includeDependencies: true
           integrations:
