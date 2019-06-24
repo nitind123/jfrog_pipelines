@@ -71,7 +71,7 @@ pipelines:
         configuration:
           targetRepository: promoted_go_test
           comment: "comment"
-#           status: "ready"
+          status: "ready"
 #           copy: true
 #           includeDependencies: true
           integrations:
