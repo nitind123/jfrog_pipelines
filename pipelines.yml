@@ -16,19 +16,19 @@ resources:
     configuration:
       sourceArtifactory: art
       name: go-service
-      version: v1.1.7
+      version: 0.1.20
   - name: signed_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceArtifactory: art
       name: go-service
-      version: v1.1.7
+      version: 0.1.20
   - name: dist_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceArtifactory: art
       name: test
-      version: v1.1.7
+      version: 0.1.20
   - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
