@@ -115,4 +115,4 @@ pipelines:
           integrations:
             - name: art
           outputResources:
-            - name: signed_release_bundle_go_publish
+            - name: dist_release_bundle_go_publish
