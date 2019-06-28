@@ -122,4 +122,5 @@ pipelines:
           inputSteps:
             - name: distribute_signed_release_bundle
         execution:
-          - echo "hi"
+          onExecute:
+            - echo "hi"
