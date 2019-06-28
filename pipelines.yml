@@ -119,8 +119,8 @@ pipelines:
       - name: testBash
         type: Bash
         configuration:
-          inputSteps:
-            - name: distribute_signed_release_bundle
+          inputResources:
+            - name: dist_release_bundle_go_publish
         execution:
           onExecute:
             - echo "hi"
