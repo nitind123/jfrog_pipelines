@@ -15,13 +15,13 @@ resources:
     type: ReleaseBundle
     configuration:
       sourceArtifactory: art
-      name: go_test_bundle
+      name: go-service
       version: v1.1.7
   - name: signed_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceArtifactory: art
-      name: go_test_bundle
+      name: go-service
       version: v1.1.7
   - name: dist_release_bundle_go_publish
     type: ReleaseBundle
