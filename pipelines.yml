@@ -121,5 +121,5 @@ pipelines:
         configuration:
           inputSteps:
             - name: distribute_signed_release_bundle
-        execute:
+        execution:
           - echo "hi"
