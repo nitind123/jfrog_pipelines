@@ -44,67 +44,67 @@ resources:
 pipelines:
   - name: go_build_pipeline_testing
     steps:
-      - name: build_go
-        type: GoBuild
-        configuration:
-          sourceLocation: .
-          repository: deepika-go
-          outputLocation: /tmp/dist
-          outputFile: hello_gb
-          inputResources:
-            - name: artifactory_go_example_gb
-          integrations:
-            - name: art
-        execution:
-          onStart:
-            - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
-            - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
-            - export PATH=$PATH:/usr/local/go/bin
-            - go version
-      - name: publish_go_binary
-        type: GoPublishBinary
-        configuration:
-          inputSteps:
-            - name: build_go
-          targetRepository: deepika-go
-          integrations:
-            - name: art
-      - name: publish_build_info_gb
-        type: PublishBuildInfo
-        configuration:
-          inputSteps:
-            - name: publish_go_binary
-          outputResources:
-            - name: go_build_info_publish_gb
-      - name: promote_build_go
-        type: PromoteBuild
-        configuration:
-          targetRepository: promoted_go_test
-          integrations:
-            - name: art
-          inputResources:
-            - name: go_build_info_publish_gb
-          outputResources:
-            - name: promoted_go_build_info_go_publish_gb
-      - name: bundle_go_publish_gb
-        type: CreateReleaseBundle
-        configuration:
-          dryRun: false
-          description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
-          releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v1.15
-          sign: false
-          inputResources:
-            - name: promoted_go_build_info_go_publish_gb
-          outputResources:
-            - name: unsigned_release_bundle_go_publish_gb
-      - name: sign_release_bundle_go_publish_gb
-        type: SignReleaseBundle
-        configuration:
-          inputResources:
-            - name: unsigned_release_bundle_go_publish_gb
-          outputResources:
-            - name: signed_release_bundle_go_publish_gb
+#       - name: build_go
+#         type: GoBuild
+#         configuration:
+#           sourceLocation: .
+#           repository: deepika-go
+#           outputLocation: /tmp/dist
+#           outputFile: hello_gb
+#           inputResources:
+#             - name: artifactory_go_example_gb
+#           integrations:
+#             - name: art
+#         execution:
+#           onStart:
+#             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+#             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
+#             - export PATH=$PATH:/usr/local/go/bin
+#             - go version
+#       - name: publish_go_binary
+#         type: GoPublishBinary
+#         configuration:
+#           inputSteps:
+#             - name: build_go
+#           targetRepository: deepika-go
+#           integrations:
+#             - name: art
+#       - name: publish_build_info_gb
+#         type: PublishBuildInfo
+#         configuration:
+#           inputSteps:
+#             - name: publish_go_binary
+#           outputResources:
+#             - name: go_build_info_publish_gb
+#       - name: promote_build_go
+#         type: PromoteBuild
+#         configuration:
+#           targetRepository: promoted_go_test
+#           integrations:
+#             - name: art
+#           inputResources:
+#             - name: go_build_info_publish_gb
+#           outputResources:
+#             - name: promoted_go_build_info_go_publish_gb
+#       - name: bundle_go_publish_gb
+#         type: CreateReleaseBundle
+#         configuration:
+#           dryRun: false
+#           description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
+#           releaseBundleName: go_publish_test_build
+#           releaseBundleVersion: v1.15
+#           sign: false
+#           inputResources:
+#             - name: promoted_go_build_info_go_publish_gb
+#           outputResources:
+#             - name: unsigned_release_bundle_go_publish_gb
+#       - name: sign_release_bundle_go_publish_gb
+#         type: SignReleaseBundle
+#         configuration:
+#           inputResources:
+#             - name: unsigned_release_bundle_go_publish_gb
+#           outputResources:
+#             - name: signed_release_bundle_go_publish_gb
       - name: distribute_signed_release_bundle_gb
         type: DistributeReleaseBundle
         configuration:
@@ -114,3 +114,10 @@ pipelines:
             - name: distribution_rule_go_publish_gb
           integrations:
             - name: art
+      - name: testBash
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: distribute_signed_release_bundle_gb
+        execute:
+          - echo "hi"
