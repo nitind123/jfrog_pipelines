@@ -16,19 +16,19 @@ resources:
     configuration:
       sourceDistribution: dist
       name: go-service
-      version: 0.1.22
+      version: 0.1.23
   - name: signed_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist
       name: go-service
-      version: 0.1.22
+      version: 0.1.23
   - name: dist_release_bundle_go_publish
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist
       name: test
-      version: 0.1.22
+      version: 0.1.23
   - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
@@ -89,10 +89,10 @@ pipelines:
       - name: bundle_go_publish
         type: CreateReleaseBundle
         configuration:
-          dryRun: false
+#           dryRun: false
           description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go-service
-          releaseBundleVersion: 0.1.22
+          releaseBundleVersion: 0.1.23
           sign: false
           inputResources:
             - name: promoted_go_build_info_go_publish
