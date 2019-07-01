@@ -89,7 +89,7 @@ pipelines:
       - name: bundle_go_publish
         type: CreateReleaseBundle
         configuration:
-          dryRun: true
+          dryRun: false
           description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go-service
           releaseBundleVersion: 0.1.21
