@@ -75,7 +75,7 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
-          targetRepository: promoted_test
+          targetRepository: promote_test
           comment: "comment"
           status: "ready"
           copy: true
