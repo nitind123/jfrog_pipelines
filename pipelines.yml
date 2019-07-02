@@ -98,6 +98,12 @@ pipelines:
             - name: promoted_go_build_info_go_publish
           outputResources:
             - name: unsigned_release_bundle_go_publish
+          releaseNotes:
+            syntax: markdown
+            content: |
+              ## Heading
+                * Bullet
+                * Points
       - name: sign_release_bundle_go_publish
         type: SignReleaseBundle
         configuration:
