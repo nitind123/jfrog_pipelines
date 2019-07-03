@@ -92,7 +92,7 @@ pipelines:
           dryRun: true
           description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go-service
-          releaseBundleVersion: 0.1.22
+          releaseBundleVersion: v0.1.$run_number
           sign: false
           inputResources:
             - name: promoted_go_build_info_go_publish
