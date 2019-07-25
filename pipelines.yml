@@ -57,7 +57,7 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
-          targetRepository: promoted_go_test
+          targetRepository: deepika-go-promote
           integrations:
             - name: art
           inputResources:
