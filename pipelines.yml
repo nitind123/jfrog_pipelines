@@ -22,15 +22,15 @@ resources:
 pipelines:
   - name: go_build_pipeline_example
     steps:
-      - name: build_go
-        type: GoBuild
+      - name: publish_go
+        type: GoPublishModule
         configuration:
           sourceLocation: .
-          repository: deepika-go
-          outputLocation: /tmp/dist
-          outputFile: hello_gb
+          version: v1.2.1
+          targetRepository: test-go-local
+          deps: all
           inputResources:
-            - name: artifactory_go_example_gb
+            - name: artifactory_go_example
           integrations:
             - name: art
         execution:
