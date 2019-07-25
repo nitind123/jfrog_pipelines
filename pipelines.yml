@@ -1,33 +1,32 @@
 resources:
-  - name: artifactory_go_example_gb
+  - name: artifactory_go_example
     type: GitRepo
     configuration:
       path: deepikasl/artifactory-go-example
-      branches:
-        include: GoBuild
       gitProvider: deepikaGithub
-  - name: go_build_info_publish_gb
+  - name: go_build_info_publish
     type: BuildInfo
     configuration:
       sourceArtifactory: art
       buildName: go_example_build_publish
       buildNumber: 1
-  - name: promoted_go_build_info_go_publish_gb
+  - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
       sourceArtifactory: art
       buildName: promote_go_build_publish
       buildNumber: 1
 
+
 pipelines:
-  - name: go_build_pipeline_example
+  - name: go_publish_example
     steps:
       - name: publish_go
         type: GoPublishModule
         configuration:
           sourceLocation: .
           version: v1.2.1
-          targetRepository: test-go-local
+          targetRepository: deepika-go
           deps: all
           inputResources:
             - name: artifactory_go_example
@@ -39,28 +38,24 @@ pipelines:
             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version
-      - name: publish_go_binary
-        type: GoPublishBinary
-        configuration:
-          inputSteps:
-            - name: build_go
-          targetRepository: deepika-go
-          integrations:
-            - name: art
-      - name: publish_build_info_gb
+      - name: publish_build_info
         type: PublishBuildInfo
         configuration:
           inputSteps:
-            - name: publish_go_binary
+            - name: publish_go
           outputResources:
-            - name: go_build_info_publish_gb
+            - name: go_build_info_publish
       - name: promote_build_go
         type: PromoteBuild
         configuration:
           targetRepository: deepika-go-promote
+          comment: "comment"
+          status: "ready"
+          copy: true
+          includeDependencies: true
           integrations:
             - name: art
           inputResources:
-            - name: go_build_info_publish_gb
+            - name: go_build_info_publish
           outputResources:
-            - name: promoted_go_build_info_go_publish_gb
+            - name: promoted_go_build_info_go_publish
