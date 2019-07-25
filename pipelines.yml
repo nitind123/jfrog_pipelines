@@ -104,29 +104,29 @@ pipelines:
               ## Heading
                 * Bullet
                 * Points
-#       - name: sign_release_bundle_go_publish
-#         type: SignReleaseBundle
-#         configuration:
-#           inputResources:
-#             - name: unsigned_release_bundle_go_publish
-#           outputResources:
-#             - name: signed_release_bundle_go_publish
-#       - name: distribute_signed_release_bundle
-#         type: DistributeReleaseBundle
-#         configuration:
-#           dryRun: false
-#           inputResources:
-#             - name: signed_release_bundle_go_publish
-#             - name: distribution_rule_go_publish
-#           integrations:
-#             - name: art
-#           outputResources:
-#             - name: dist_release_bundle_go_publish
-#       - name: testBash
-#         type: Bash
-#         configuration:
-#           inputResources:
-#             - name: dist_release_bundle_go_publish
-#         execution:
-#           onExecute:
-#             - echo "hi"
+      - name: sign_release_bundle_go_publish
+        type: SignReleaseBundle
+        configuration:
+          inputResources:
+            - name: unsigned_release_bundle_go_publish
+          outputResources:
+            - name: signed_release_bundle_go_publish
+      - name: distribute_signed_release_bundle
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: signed_release_bundle_go_publish
+            - name: distribution_rule_go_publish
+          integrations:
+            - name: art
+          outputResources:
+            - name: dist_release_bundle_go_publish
+      - name: testBash
+        type: Bash
+        configuration:
+          inputResources:
+            - name: dist_release_bundle_go_publish
+        execution:
+          onExecute:
+            - echo "hi"
