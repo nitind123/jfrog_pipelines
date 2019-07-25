@@ -6,43 +6,21 @@ resources:
       branches:
         include: GoBuild
       gitProvider: deepikaGithub
-
   - name: go_build_info_publish_gb
     type: BuildInfo
     configuration:
       sourceArtifactory: art
       buildName: go_example_build_publish
       buildNumber: 1
-  - name: unsigned_release_bundle_go_publish_gb
-    type: ReleaseBundle
-    configuration:
-      sourceArtifactory: art
-      name: go_test_bundle
-      version: v1.15
-  - name: signed_release_bundle_go_publish_gb
-    type: ReleaseBundle
-    configuration:
-      sourceArtifactory: art
-      name: go_test_bundle
-      version: v1.15
   - name: promoted_go_build_info_go_publish_gb
     type: BuildInfo
     configuration:
       sourceArtifactory: art
       buildName: promote_go_build_publish
       buildNumber: 1
-  - name: distribution_rule_go_publish_gb
-    type: DistributionRule
-    configuration:
-      sourceArtifactory: art
-      cityName: "*"
-      serviceName: "*"
-      siteName: "*"
-      countryCodes:
-        - CN
 
 pipelines:
-  - name: go_publish_example
+  - name: go_build_pipeline_example
     steps:
       - name: build_go
         type: GoBuild
@@ -61,6 +39,12 @@ pipelines:
             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version
+          onExecute:
+            - add_pipeline_variables pipelineId=$pipeline_id
+            - add_pipeline_variables stepId=$step_id
+            - add_run_variables runNumber=$run_number
+            - add_run_variables foo=bar
+
       - name: publish_go_binary
         type: GoPublishBinary
         configuration:
