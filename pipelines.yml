@@ -17,14 +17,14 @@ resources:
     configuration:
       sourceDistribution: dist
       name: test-docker-local
-      version: v1.0.13
+#       version: v1.0.14
       
   - name: signed_release_bundle_docker_build
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist
       name: test-docker-local
-      version: v1.0.13
+#       version: v1.0.14
       isSigned: false     
 
   - name: distribution_rule_docker_build
