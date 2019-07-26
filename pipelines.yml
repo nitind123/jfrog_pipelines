@@ -16,8 +16,6 @@ resources:
       sourceArtifactory: art
       buildName: promote_go_build_publish
       buildNumber: 1
-
-
 pipelines:
   - name: go_publish_example
     steps:
