@@ -77,7 +77,7 @@ pipelines:
           nodePool: aws-demo-pool
           releaseBundleName: test-docker-local
           releaseBundleVersion: v0.1.$run_number
-          dryRun: true
+          dryRun: false
           sign: false
           description: "docker build"
           inputResources:
