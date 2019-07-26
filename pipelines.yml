@@ -7,13 +7,13 @@ resources:
   - name: go_build_info_publish
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
+      sourceArtifactory: art_aws
       buildName: go_example_build_publish
       buildNumber: 1
   - name: promoted_go_build_info_go_publish
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
+      sourceArtifactory: art_aws
       buildName: promote_go_build_publish
       buildNumber: 1
 pipelines:
@@ -30,7 +30,7 @@ pipelines:
           inputResources:
             - name: artifactory_go_example
           integrations:
-            - name: art
+            - name: art_aws
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
@@ -50,12 +50,10 @@ pipelines:
         configuration:
           nodePool: aws-demo-pool
           targetRepository: deepika-go-promote
-          comment: "comment"
-          status: "ready"
           copy: true
           includeDependencies: true
           integrations:
-            - name: art
+            - name: art_aws
           inputResources:
             - name: go_build_info_publish
           outputResources:
