@@ -1,0 +1,19 @@
+resources:
+  - name: github_new
+    type: GitRepo
+    configuration:
+      path: deepikasl/VT2
+      gitProvider: deepikaGithub
+
+pipelines:
+  - name: pipeline_new
+    steps:          
+      - name: bash_new
+        type: Bash
+        configuration:
+          inputResources:
+            - name: github_new
+        execution:
+          onExecute:
+            - echo "executing bash step..."
+  
