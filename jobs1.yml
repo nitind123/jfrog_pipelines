@@ -1,0 +1,19 @@
+resources:
+  - name: deeps_github
+    type: GitRepo
+    configuration:
+      path: deepikasl/VT2
+      gitProvider: deepikaGithub
+ 
+pipelines:
+  - name: deeps_pipeline
+    steps:          
+      - name: deeps_bash
+        type: Bash
+        configuration:
+          inputResources:
+            - name: deeps_github
+        execution:
+          onExecute:
+            - echo "executing bash step..."
+  
