@@ -8,28 +8,28 @@ resources:
   - name: docker_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
+      sourceArtifactory: deepika_art
       buildNumber: 1
       buildName: dockertest  
       
   - name: unsigned_release_bundle_docker_build
     type: ReleaseBundle
     configuration:
-      sourceDistribution: dist
+      sourceDistribution: deepika_dist
       name: test-docker-local
       version: v1.0
       
   - name: signed_release_bundle_docker_build
     type: ReleaseBundle
     configuration:
-      sourceDistribution: dist
+      sourceDistribution: deepika_dist
       name: test-docker-local
       version: v1.0
 
   - name: distribution_rule_docker_build
     type: DistributionRule
     configuration:
-      sourceDistribution: dist
+      sourceDistribution: deepika_dist
       cityName: "*"
       serviceName: "*"
       siteName: "*"
@@ -48,7 +48,7 @@ pipelines:
           dockerImageName: '34.66.107.45:8081/docker-stage-local/deepika'
           dockerImageTag: myImg_$pipeline_name.$run_number
           integrations:
-            - name: art
+            - name: deepika_art
           inputResources:
             - name: docker_build_repo    
    
@@ -58,7 +58,7 @@ pipelines:
          # nodePool: aws-demo-pool
           targetRepository: test-docker-local
           integrations:
-            - name: art
+            - name: deepika_art
           inputSteps:
             - name: docker_build
             
@@ -109,4 +109,4 @@ pipelines:
             - name: signed_release_bundle_docker_build
             - name: distribution_rule_docker_build
           integrations: 
-            - name: dist             
+            - name: deepika_dist             
