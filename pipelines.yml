@@ -28,7 +28,7 @@ pipelines:
             - name: step_1_1
         execution:
           onExecute:
-            - echo "pipe_2 -> step_1_2"
+            - echo "pipe_1 -> step_1_2"
   - name: pipe_2
     steps:
       - name: step_2_1
@@ -38,7 +38,7 @@ pipelines:
             - name: gitRepo_1
         execution:
           onExecute:
-            - echo "pipe_1 -> step_2_1"
+            - echo "pipe_2 -> step_2_1"
       - name: step_2_2
         type: Bash
         configuration:
@@ -47,5 +47,275 @@ pipelines:
         execution:
           onExecute:
             - echo "pipe_2 -> step_2_2"
-    
+  - name: pipe_3
+    steps:
+      - name: step_3_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_3 -> step_3_1"
+      - name: step_3_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_3_1
+        execution:
+          onExecute:
+            - echo "pipe_3 -> step_3_2"
+  - name: pipe_4
+    steps:
+      - name: step_4_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_4 -> step_4_1"
+      - name: step_4_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_4_1
+        execution:
+          onExecute:
+            - echo "pipe_4 -> step_4_2"
+  - name: pipe_5
+    steps:
+      - name: step_5_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_5 -> step_5_1"
+      - name: step_5_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_5_1
+        execution:
+          onExecute:
+            - echo "pipe_5 -> step_5_2"
+  - name: pipe_6
+    steps:
+      - name: step_6_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_6 -> step_6_1"
+      - name: step_6_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_6_1
+        execution:
+          onExecute:
+            - echo "pipe_6 -> step_6_2"
+  - name: pipe_7
+    steps:
+      - name: step_7_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_7 -> step_7_1"
+      - name: step_7_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_7_1
+        execution:
+          onExecute:
+            - echo "pipe_7 -> step_7_2"
+  - name: pipe_8
+    steps:
+      - name: step_8_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_8 -> step_8_1"
+      - name: step_8_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_8_1
+        execution:
+          onExecute:
+            - echo "pipe_8 -> step_8_2"
+  - name: pipe_9
+    steps:
+      - name: step_9_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_9 -> step_9_1"
+      - name: step_9_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_9_1
+        execution:
+          onExecute:
+            - echo "pipe_9 -> step_9_2"
+  - name: pipe_10
+    steps:
+      - name: step_10_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_10 -> step_10_1"
+      - name: step_10_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_10_1
+        execution:
+          onExecute:
+            - echo "pipe_10 -> step_10_2"
+  - name: pipe_11
+    steps:
+      - name: step_11_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_11 -> step_11_1"
+      - name: step_11_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_11_1
+        execution:
+          onExecute:
+            - echo "pipe_11 -> step_11_2"
+  - name: pipe_12
+    steps:
+      - name: step_12_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_12 -> step_12_1"
+      - name: step_12_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_12_1
+        execution:
+          onExecute:
+            - echo "pipe_12 -> step_12_2"
+  - name: pipe_13
+    steps:
+      - name: step_13_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_13 -> step_13_1"
+      - name: step_13_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_13_1
+        execution:
+          onExecute:
+            - echo "pipe_13 -> step_13_2"
+  - name: pipe_14
+    steps:
+      - name: step_14_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_14 -> step_14_1"
+      - name: step_14_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_14_1
+        execution:
+          onExecute:
+            - echo "pipe_14 -> step_14_2"
+  - name: pipe_15
+    steps:
+      - name: step_15_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_15 -> step_15_1"
+      - name: step_15_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_15_1
+        execution:
+          onExecute:
+            - echo "pipe_15 -> step_15_2"
+  - name: pipe_16
+    steps:
+      - name: step_16_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_16 -> step_16_1"
+      - name: step_16_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_16_1
+        execution:
+          onExecute:
+            - echo "pipe_16 -> step_16_2"
+  - name: pipe_17
+    steps:
+      - name: step_17_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1_1
+        execution:
+          onExecute:
+            - echo "pipe_17 -> step_17_1"
+      - name: step_17_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_17_1
+        execution:
+          onExecute:
+            - echo "pipe_17 -> step_17_2"
+     
  
