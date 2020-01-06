@@ -13,9 +13,10 @@ pipelines:
         configuration:
           runtime:            
             type: image
-            custom:
-              name: shippabledocker/jfreq
-              tag: latest
+            image:
+              custom:
+                name: shippabledocker/jfreq
+                tag: latest
         execution:
           onExecute:
             - echo "Executing testBash.."
