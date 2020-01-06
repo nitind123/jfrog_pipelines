@@ -39,4 +39,3 @@ pipelines:
           onExecute:
             - echo "Executing restoreBash.."
             - restore_cache_files pipeline_state_cache cache.txt
-            - cat cache.txt
