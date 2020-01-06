@@ -11,8 +11,15 @@ pipelines:
       - name: testBash
         type: Bash
         configuration:
-          inputResources:
-            - name: gitRepo
+          runtime:            
+            type: image
+              custom:
+                name: shippabledocker/jfreq
+                tag: latest
         execution:
           onExecute:
             - echo "Executing testBash.."
+            - add_pipeline_variables pipelineId=$pipeline_id
+            - add_pipeline_variables test='test'	        
+            - add_run_variables runId=$run_number	
+            - add_run_variables testId=$step_id	
