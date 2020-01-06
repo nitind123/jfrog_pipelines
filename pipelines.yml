@@ -27,7 +27,7 @@ pipelines:
       - name: restoreBash
         type: Bash
         configuration:
-          inputResources:
+          inputSteps:
             - name: testBash
           runtime:            
             type: image
