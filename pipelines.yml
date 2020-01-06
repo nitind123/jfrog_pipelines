@@ -43,5 +43,5 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing restoreBash.."
-            - restore_pipeline_files pipeline_state_cache cache.txt
+            - restore_pipeline_files pipeline_state_file pipeline_state.txt
             - restore_run_files run_state_file run_state.txt
