@@ -24,3 +24,17 @@ pipelines:
             - add_run_variables runId=$run_number	
             - echo "state=$run_number" > cache.txt
             - add_cache_files cache.txt pipeline_state_cache
+      - name: restoreBash
+        type: Bash
+        configuration:
+          runtime:            
+            type: image
+            image:
+              custom:
+                name: shippabledocker/jfreq
+                tag: latest
+        execution:
+          onExecute:
+            - echo "Executing restoreBash.."
+            - restore_cache_files pipeline_state_cache cache.txt
+            - cat cache.txt
