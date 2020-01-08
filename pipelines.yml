@@ -8,28 +8,28 @@ resources:
   - name: docker_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: deepika_art
+      sourceArtifactory: demoArt
       buildNumber: 1
       buildName: dockertest  
       
   - name: unsigned_release_bundle_docker_build
     type: ReleaseBundle
     configuration:
-      sourceDistribution: deepika_dist
+      sourceDistribution: demoDist
       name: test-docker-local
       version: v1.0
       
   - name: signed_release_bundle_docker_build
     type: ReleaseBundle
     configuration:
-      sourceDistribution: deepika_dist
+      sourceDistribution: demoDist
       name: test-docker-local
       version: v1.0
 
   - name: distribution_rule_docker_build
     type: DistributionRule
     configuration:
-      sourceDistribution: deepika_dist
+      sourceDistribution: demoDist
       cityName: "*"
       serviceName: "*"
       siteName: "*"
@@ -42,30 +42,27 @@ pipelines:
       - name: docker_build
         type: DockerBuild
         configuration:
-         # nodePool: aws-demo-pool
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: '34.66.107.45:8081/docker-stage-local/deepika'
+          dockerImageName: '34.74.146.128:8082/docker-stage-local/deepika'
           dockerImageTag: myImg_$pipeline_name.$run_number
           integrations:
-            - name: deepika_art
+            - name: demoArt
           inputResources:
             - name: docker_build_repo    
    
       - name: docker_push
         type: DockerPush
         configuration:
-         # nodePool: aws-demo-pool
           targetRepository: test-docker-local
           integrations:
-            - name: deepika_art
+            - name: demoArt
           inputSteps:
             - name: docker_build
             
       - name: docker_publish
         type: PublishBuildInfo
         configuration:
-         # nodePool: aws-demo-pool
           inputSteps:
             - name: docker_push
           outputResources:
@@ -74,7 +71,6 @@ pipelines:
       - name: bundle_docker
         type: CreateReleaseBundle
         configuration:
-         # nodePool: aws-demo-pool
           releaseBundleName: test-docker-local
           releaseBundleVersion: v0.1.$run_number
           dryRun: false
@@ -94,7 +90,6 @@ pipelines:
       - name: sign_release_bundle_docker
         type: SignReleaseBundle
         configuration:
-          #nodePool: aws-demo-pool
           inputResources:
             - name: unsigned_release_bundle_docker_build
           outputResources:
@@ -103,10 +98,9 @@ pipelines:
       - name: dockerDistribute
         type: DistributeReleaseBundle
         configuration:
-          #nodePool: aws-demo-pool
           dryRun: false
           inputResources:
             - name: signed_release_bundle_docker_build
             - name: distribution_rule_docker_build
           integrations: 
-            - name: deepika_dist             
+            - name: demoDist             
