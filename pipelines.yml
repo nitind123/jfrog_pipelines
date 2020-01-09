@@ -25,11 +25,12 @@ pipelines:
       - name: build_npm
         type: NpmBuild
         configuration:
-          npmArgs: verbose
           repositoryName: npm-virtual
           sourceLocation: .
           inputResources:
             - name: npmHelloWorld_repo
+          outputResources:
+            - name: helloworld
           integrations:
             - name: art
 
@@ -37,6 +38,8 @@ pipelines:
         type: NpmPublish
         configuration:
           repositoryName: npm-virtual
+          inputResources:
+            - name: helloworld
           inputSteps:
             - name: build_npm
           integrations:
