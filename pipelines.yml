@@ -25,6 +25,7 @@ pipelines:
       - name: build_npm
         type: NpmBuild
         configuration:
+          npmArgs: verbose
           repositoryName: npm-virtual
           sourceLocation: .
           inputResources:
