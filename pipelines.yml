@@ -13,33 +13,6 @@ resources:
       sourceArtifactory: art
       buildName: go_example_build_publish
       buildNumber: 1
-  - name: unsigned_release_bundle_go_publish_gb
-    type: ReleaseBundle
-    configuration:
-      sourceArtifactory: art
-      name: go_test_bundle
-      version: v1.15
-  - name: signed_release_bundle_go_publish_gb
-    type: ReleaseBundle
-    configuration:
-      sourceArtifactory: art
-      name: go_test_bundle
-      version: v1.15
-  - name: promoted_go_build_info_go_publish_gb
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: art
-      buildName: promote_go_build_publish
-      buildNumber: 1
-  - name: distribution_rule_go_publish_gb
-    type: DistributionRule
-    configuration:
-      sourceArtifactory: art
-      cityName: "*"
-      serviceName: "*"
-      siteName: "*"
-      countryCodes:
-        - CN
 
 pipelines:
   - name: go_build_pipeline_testing
