@@ -72,6 +72,6 @@ pipelines:
           integrations:
             - name: art
           inputResources:
-            - name: artifactory_go_example
+            - name: artifactory_go_example_gb
           outputResources:
             - name: go_build_info_publish_module
