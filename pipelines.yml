@@ -11,11 +11,11 @@ pipelines:
       - name: testBash
         type: Bash
         configuration:
-          nodePool: u16
+#           nodePool: u16
           inputResources:
             - name: gitRepo
-#           runtime:            
-#             type: image
+          runtime:            
+            type: host
 #             image:
 #               custom:
 #                 name: shippabledocker/jfreq
