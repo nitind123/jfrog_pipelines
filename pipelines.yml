@@ -11,6 +11,8 @@ pipelines:
       - name: testBash
         type: Bash
         configuration:
+          inputResources:
+            - name: gitRepo
           runtime:            
             type: image
             image:
