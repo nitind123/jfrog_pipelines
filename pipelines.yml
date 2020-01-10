@@ -11,14 +11,15 @@ pipelines:
       - name: testBash
         type: Bash
         configuration:
+          nodePool: u16
           inputResources:
             - name: gitRepo
-          runtime:            
-            type: image
-            image:
-              custom:
-                name: shippabledocker/jfreq
-                tag: latest
+#           runtime:            
+#             type: image
+#             image:
+#               custom:
+#                 name: shippabledocker/jfreq
+#                 tag: latest
         execution:
           onExecute:
             - echo "Executing testBash.."
