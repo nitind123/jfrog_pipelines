@@ -14,13 +14,13 @@ pipelines:
 #           nodePool: u16
           inputResources:
             - name: gitRepo
-          runtime:            
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "10.16.3"
+#           runtime:            
+#             type: image
+#             image:
+#               auto:
+#                 language: node
+#                 versions:
+#                   - "10.16.3"
         execution:
           onExecute:
             - echo "Executing testBash.."
