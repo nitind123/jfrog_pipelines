@@ -15,11 +15,12 @@ pipelines:
           inputResources:
             - name: gitRepo
           runtime:            
-            type: host
-#             image:
-#               custom:
-#                 name: shippabledocker/jfreq
-#                 tag: latest
+            type: image
+            image:
+              auto:
+                language: nodejs
+                versions:
+                  - "10.16.3"
         execution:
           onExecute:
             - echo "Executing testBash.."
