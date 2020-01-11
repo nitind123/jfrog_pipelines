@@ -46,7 +46,7 @@ pipelines:
           dockerFileLocation: .
           dockerFileName: Dockerfile
           dockerImageName: '34.74.146.128:8082/docker-stage-local'
-          dockerImageTag: myImg_$pipeline_name.$run_number
+          dockerImageTag: ${run_number}
           integrations:
             - name: demoArt
           inputResources:
