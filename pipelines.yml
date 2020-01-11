@@ -73,7 +73,7 @@ pipelines:
         type: CreateReleaseBundle
         configuration:
           releaseBundleName: test-docker-local
-          releaseBundleVersion: v0.1.$run_number
+          releaseBundleVersion: v0.1.${run_number}
           dryRun: false
           sign: false
           description: "docker build"
