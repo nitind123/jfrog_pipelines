@@ -45,7 +45,7 @@ pipelines:
         configuration:
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: '34.74.146.128:8082/docker-stage-local'
+          dockerImageName: '34.74.146.128:8082/docker-stage-local/deepika'
           dockerImageTag: ${run_number}
           integrations:
             - name: demoArt
