@@ -34,7 +34,8 @@ resources:
       serviceName: "*"
       siteName: "*"
       countryCodes:
-        - IN
+        - "CN"
+        - "GB"
 
 pipelines: 
   - name: demo_docker
