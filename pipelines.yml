@@ -104,4 +104,4 @@ pipelines:
             - name: signed_release_bundle_docker_build
             - name: distribution_rule_docker_build
           integrations: 
-            - name: demoDist             
+            - name: distribution             
