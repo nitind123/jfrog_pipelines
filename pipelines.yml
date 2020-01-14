@@ -8,28 +8,28 @@ resources:
   - name: docker_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: demoArt
+      sourceArtifactory: artifactory
       buildNumber: 1
       buildName: dockertest  
       
   - name: unsigned_release_bundle_docker_build
     type: ReleaseBundle
     configuration:
-      sourceDistribution: demoDist
+      sourceDistribution: distribution
       name: test-docker-local
       version: v1.0
       
   - name: signed_release_bundle_docker_build
     type: ReleaseBundle
     configuration:
-      sourceDistribution: demoDist
+      sourceDistribution: distribution
       name: test-docker-local
       version: v1.0
 
   - name: distribution_rule_docker_build
     type: DistributionRule
     configuration:
-      sourceDistribution: demoDist
+      sourceDistribution: distribution
       cityName: "*"
       serviceName: "*"
       siteName: "*"
@@ -45,10 +45,10 @@ pipelines:
         configuration:
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: '34.74.146.128:8082/docker-stage-local/deepika'
+          dockerImageName: '34.107.168.13:8082/docker-stage-local/deepika'
           dockerImageTag: ${run_number}
           integrations:
-            - name: demoArt
+            - name: artifactory
           inputResources:
             - name: docker_build_repo    
    
@@ -57,7 +57,7 @@ pipelines:
         configuration:
           targetRepository: test-docker-local
           integrations:
-            - name: demoArt
+            - name: artifactory
           inputSteps:
             - name: docker_build
             
