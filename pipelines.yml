@@ -87,7 +87,8 @@ pipelines:
 #               ## This is a demo to test Docker Build 
 #                 * Build -> Push -> Publish -> Bundle -> Sign -> Distribute
 #                 * Points       
-                 
+  - name: demo_sign
+    steps:
       - name: sign_release_bundle_docker
         type: SignReleaseBundle
         configuration:
