@@ -96,12 +96,12 @@ pipelines:
           outputResources:
             - name: signed_release_bundle_docker_build
             
-#       - name: dockerDistribute
-#         type: DistributeReleaseBundle
-#         configuration:
-#           dryRun: false
-#           inputResources:
-#             - name: signed_release_bundle_docker_build
-#             - name: distribution_rule_docker_build
-#           integrations: 
-#             - name: distribution             
+      - name: dockerDistribute
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: signed_release_bundle_docker_build
+            - name: distribution_rule_docker_build
+          integrations: 
+            - name: distribution             
