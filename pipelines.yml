@@ -69,24 +69,24 @@ pipelines:
           outputResources:
             - name: docker_build_info  
             
-      - name: bundle_docker
-        type: CreateReleaseBundle
-        configuration:
-          releaseBundleName: test-docker-local
-          releaseBundleVersion: v0.1.${run_number}
-          dryRun: false
-          sign: false
-          description: "docker build"
-          inputResources:
-            - name: docker_build_info
-          outputResources:
-            - name: unsigned_release_bundle_docker_build
-          releaseNotes:
-            syntax: markdown
-            content: |
-              ## This is a demo to test Docker Build 
-                * Build -> Push -> Publish -> Bundle -> Sign -> Distribute
-                * Points       
+#       - name: bundle_docker
+#         type: CreateReleaseBundle
+#         configuration:
+#           releaseBundleName: test-docker-local
+#           releaseBundleVersion: v0.1.${run_number}
+#           dryRun: false
+#           sign: false
+#           description: "docker build"
+#           inputResources:
+#             - name: docker_build_info
+#           outputResources:
+#             - name: unsigned_release_bundle_docker_build
+#           releaseNotes:
+#             syntax: markdown
+#             content: |
+#               ## This is a demo to test Docker Build 
+#                 * Build -> Push -> Publish -> Bundle -> Sign -> Distribute
+#                 * Points       
                  
       - name: sign_release_bundle_docker
         type: SignReleaseBundle
@@ -96,12 +96,12 @@ pipelines:
           outputResources:
             - name: signed_release_bundle_docker_build
             
-      - name: dockerDistribute
-        type: DistributeReleaseBundle
-        configuration:
-          dryRun: false
-          inputResources:
-            - name: signed_release_bundle_docker_build
-            - name: distribution_rule_docker_build
-          integrations: 
-            - name: distribution             
+#       - name: dockerDistribute
+#         type: DistributeReleaseBundle
+#         configuration:
+#           dryRun: false
+#           inputResources:
+#             - name: signed_release_bundle_docker_build
+#             - name: distribution_rule_docker_build
+#           integrations: 
+#             - name: distribution             
