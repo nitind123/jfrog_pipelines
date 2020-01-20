@@ -6,17 +6,16 @@ resources:
       branches:
         include: GoBuild
       gitProvider: deepikaGithub
-
   - name: go_build_info_publish_gb
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
+      sourceArtifactory: artifactory
       buildName: go_example_build_publish
       buildNumber: 1
   - name: go_build_info_publish_module
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
+      sourceArtifactory: artifactory
       buildName: go_example_module_publish_varsha
       buildNumber: 332
 
@@ -33,13 +32,13 @@ pipelines:
           inputResources:
             - name: artifactory_go_example_gb
           integrations:
-            - name: art
-#         execution:
-#           onStart:
-#             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
-#             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
-#             - export PATH=$PATH:/usr/local/go/bin
-#             - go version
+            - name: artifactory
+        execution:
+          onStart:
+            - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+            - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
+            - export PATH=$PATH:/usr/local/go/bin
+            - go version
       - name: publish_go_binary
         type: GoPublishBinary
         configuration:
@@ -47,7 +46,7 @@ pipelines:
             - name: build_go
           targetRepository: deepika-go
           integrations:
-            - name: art
+            - name: artifactory
       - name: publish_build
         type: PublishBuildInfo
         configuration:
@@ -55,23 +54,8 @@ pipelines:
             - name: publish_go_binary
           outputResources:
             - name: go_build_info_publish_gb
-        
-      - name: publish_go_module
-        type: GoPublishModule
-#         execution:
-#           onStart:
-            #- wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
-           # - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
-           # - export PATH=$PATH:/usr/local/go/bin
-           # - go version
-        configuration:  
-          sourceLocation: .          # required
-          version: v0.0.0           # required
-          targetRepository: deepika-go
-          autoPublishBuildInfo: true
-          integrations:
-            - name: art
+      - name: xray
+        type: XrayScan
+        configuration:
           inputResources:
-            - name: artifactory_go_example_gb
-          outputResources:
-            - name: go_build_info_publish_module
+            - name: go_build_info_publish_gb
