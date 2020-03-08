@@ -1,53 +1,22 @@
 resources:
-  - name: gitRepo
+  - name: gcp_packer
     type: GitRepo
     configuration:
-      path: deepikasl/VT1
+      path: deepikasl/packer-gcp
       gitProvider: deepikaGithub
 
 pipelines:
   - name: bash_pipeline
     steps:
-      - name: testBash
+      - name: gcp
         type: Bash
         configuration:
-          nodePool: u16-dynamic
           inputResources:
-            - name: gitRepo
-            
-#           runtime:            
-#             type: image
-#             image:
-#               auto:
-#                 language: node
-#                 versions:
-#                   - "12.14.0"
+            - name: gcp_packer
+          integrations:
+            - name: gcp
         execution:
           onExecute:
-            - node -v
             - echo "Executing testBash.."
-            - restore_cache_files pipeline_state_cache cache.txt
-            - add_pipeline_variables pipelineId=$pipeline_id
-            - add_run_variables runId=$run_number	
-            - echo "state=$run_number" > cache.txt
-            - add_cache_files cache.txt pipeline_state_cache
-            - echo "state=$run_number" > pipeline_state.txt
-            - add_pipeline_files pipeline_state.txt pipeline_state_file
-            - echo "state=$run_number" > run_state.txt
-            - add_run_files run_state.txt run_state_file
-      - name: restoreBash
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: testBash
-#           runtime:            
-#             type: image
-#             image:
-#               custom:
-#                 name: shippabledocker/jfreq
-#                 tag: latest
-        execution:
-          onExecute:
-            - echo "Executing restoreBash.."
-            - restore_pipeline_files pipeline_state_file pipeline_state.txt
-            - restore_run_files run_state_file run_state.txt
+            - printenv
+            
