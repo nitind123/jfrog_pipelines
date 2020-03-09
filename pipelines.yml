@@ -23,7 +23,7 @@ pipelines:
             - echo $int_gcp_jsonKey > account.json
             - rm -rf /tmp/packer && mkdir -p /tmp/packer
             - PK_FILE="packer_1.4.5_linux_amd64.zip"
-            - wget -nv https://releases.hashicorp.com/packer/${packerVersion}/$PK_FILE
+            - wget -nv https://releases.hashicorp.com/packer/1.4.5/$PK_FILE
             - unzip -o $PK_FILE -d /tmp/packer
             - sudo chmod +x /tmp/packer/packer
             - mv /tmp/packer/packer /usr/bin/packer
