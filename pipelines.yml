@@ -27,6 +27,7 @@ pipelines:
             - unzip -o $PK_FILE -d /tmp/packer
             - sudo chmod +x /tmp/packer/packer
             - mv /tmp/packer/packer /usr/bin/packer
+            - chmod +x basePack.sh
             - ./basePack.sh pipelines-cloud-stg n1-standard-1 ubuntu-1604-lts us-west1 us-west1-b root account.json test-image-family-u16 u16-poc-deepika u16-Image
             - popd
             
