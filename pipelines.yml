@@ -20,8 +20,7 @@ pipelines:
             - echo "Executing testBash.."
             - printenv
             - pushd $res_gcp_packer_resourcePath
-            - touch vars.json
-            - replace_envs $int_gcp_jsonKey vars.json
+            - echo $int_gcp_jsonKey > vars.json
             - cat vars.json
             - popd
             
