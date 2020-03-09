@@ -8,7 +8,7 @@ resources:
 pipelines:
   - name: bash_pipeline
     steps:
-      - name: gcp
+      - name: u16_gcp
         type: Bash
         configuration:
           inputResources:
@@ -29,5 +29,27 @@ pipelines:
             - mv /tmp/packer/packer /usr/bin/packer
             - chmod +x basePack.sh
             - ./basePack.sh pipelines-cloud-stg n1-standard-1 ubuntu-1604-lts us-west1 us-west1-b root account.json test-image-family-u16 u16-poc-deepika u16-image
+            - popd
+      - name: c7_gcp
+        type: Bash
+        configuration:
+          inputResources:
+            - name: gcp_packer
+          integrations:
+            - name: gcp
+        execution:
+          onExecute:
+            - echo "Executing testBash.."
+            - printenv
+            - pushd $res_gcp_packer_resourcePath
+            - echo $int_gcp_jsonKey > account.json
+            - rm -rf /tmp/packer && mkdir -p /tmp/packer
+            - PK_FILE="packer_1.5.0_linux_amd64.zip"
+            - wget -nv https://releases.hashicorp.com/packer/1.5.0/$PK_FILE
+            - unzip -o $PK_FILE -d /tmp/packer
+            - sudo chmod +x /tmp/packer/packer
+            - mv /tmp/packer/packer /usr/bin/packer
+            - chmod +x c7Pack.sh
+            - ./c7Pack.sh pipelines-cloud-stg n1-standard-1 centos-7 us-west1 us-west1-b root account.json test-image-family-c7 c7-poc-deepika c7-image
             - popd
             
