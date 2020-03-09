@@ -50,8 +50,12 @@ pipelines:
             - sudo chmod +x /tmp/packer/packer
             - mv /tmp/packer/packer /usr/bin/packer
             - chmod +x c7Pack.sh
-            - ./c7Pack.sh pipelines-cloud-stg n1-standard-1 centos-7 us-west1 us-west1-b centos c7account.json centos c7-poc-deepika c7-image
-            - imageName="c7-poc-deepika-test"
+            - region="us-west1"
+            - arch="x86_64"
+            - imageName="$region-image-for-$arch-ubuntu16"
+            - imageName=${imageName//_/-}
+            - echo $imageName
+            - ./c7Pack.sh pipelines-cloud-stg n1-standard-1 centos-7 us-west1 us-west1-b centos c7account.json centos c7-poc-deepika $imageName
             - IMAGE_ID=$(gcloud compute images list --filter="name=('${imageName}')" --format="value(id)")
             - echo "$IMAGE_ID"
             - popd
