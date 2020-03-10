@@ -35,7 +35,7 @@ pipelines:
             - gcpRegion="us-west1"
             - arch="x86_64"
             - gcpImageNameRegion="$gcpRegion-image-for-$arch-ubuntu16"
-            - gcpImageNameRegion=${gcpImageName//_/-}
+            - gcpImageNameRegion=${gcpImageNameRegion//_/-}
             - gcpProjectId=pipelines-cloud-stg
             - gcloud compute images create $gcpImageNameRegion --source-image $gcpImageName --source-image-project $gcpProjectId --storage-location $gcpRegion
             - IMAGE_ID=$(gcloud compute images list --filter="name=('${gcpImageNameRegion}')" --format="value(id)")
