@@ -30,6 +30,8 @@ pipelines:
             - chmod +x basePack.sh
             - gcpImageName="u16-image-for-x86-64"
             - ./basePack.sh pipelines-cloud-stg n1-standard-1 ubuntu-1604-lts us-west1 us-west1-b root account.json test-image-family-u16 u16-poc-deepika $gcpImageName
+            - AMI_ID=$(cat ami.txt)
+            - echo $AMI_ID
             - popd
             - pushd $res_gcp_packer_resourcePath
             - gcpRegion="us-west1"
