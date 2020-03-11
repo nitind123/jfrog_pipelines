@@ -5,26 +5,26 @@ resources:
       path: deepikasl/packer-gcp
       gitProvider: deepikaGithub
 
-  - name: buildPlaneDebFS_x8664_U16
-    type: FileSpec
-    configuration:
-      sourceArtifactory: entArt
-      pattern: "pipelines-artifacts/buildPlane/buildPlane-x86_64-Ubuntu_16.04-*.deb"
-      recursive: false
+#   - name: buildPlaneDebFS_x8664_U16
+#     type: FileSpec
+#     configuration:
+#       sourceArtifactory: entArt
+#       pattern: "pipelines-artifacts/buildPlane/buildPlane-x86_64-Ubuntu_16.04-*.deb"
+#       recursive: false
 
-  - name: buildPlaneDebFS_x8664_U18
-    type: FileSpec
-    configuration:
-      sourceArtifactory: entArt
-      pattern: "pipelines-artifacts/buildPlane/buildPlane-x86_64-Ubuntu_18.04-*.deb"
-      recursive: false
+#   - name: buildPlaneDebFS_x8664_U18
+#     type: FileSpec
+#     configuration:
+#       sourceArtifactory: entArt
+#       pattern: "pipelines-artifacts/buildPlane/buildPlane-x86_64-Ubuntu_18.04-*.deb"
+#       recursive: false
 
-  - name: buildPlaneRpmFS_x8664_C7
-    type: FileSpec
-    configuration:
-      sourceArtifactory: entArt
-      pattern: "pipelines-artifacts/buildPlane/buildPlane-x86_64-CentOS_7-*.rpm"
-      recursive: false
+#   - name: buildPlaneRpmFS_x8664_C7
+#     type: FileSpec
+#     configuration:
+#       sourceArtifactory: entArt
+#       pattern: "pipelines-artifacts/buildPlane/buildPlane-x86_64-CentOS_7-*.rpm"
+#       recursive: false
 
 pipelines:
   - name: build_gcp_images
