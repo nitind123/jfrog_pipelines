@@ -30,7 +30,7 @@ pipelines:
             - chmod +x basePack.sh
             - gcpImageName="u16-image-for-x86-64"
             - ./basePack.sh pipelines-cloud-stg n1-standard-1 ubuntu-1604-lts us-west1 us-west1-b root account.json test-image-family-u16 u16-poc-deepika $gcpImageName
-            - gcpImageName=$(cat ami.txt)
+            - gcpImageName=$(cat image.txt)
             - echo $gcpImageName
             - popd
             - pushd $res_gcp_packer_resourcePath
@@ -66,12 +66,55 @@ pipelines:
             - chmod +x c7Pack.sh
             - region="us-west1"
             - arch="x86_64"
-            - imageName="$region-image-for-$arch-ubuntu16"
-            - imageName=${imageName//_/-}
-            - echo $imageName
-            - source ./createMeta.sh
+            - imageName="c7-image-for-x86-64"
             - ./c7Pack.sh pipelines-cloud-stg n1-standard-1 centos-7 us-west1 us-west1-b centos c7account.json centos c7-poc-deepika $imageName
-            - IMAGE_ID=$(gcloud compute images list --filter="name=('${imageName}')" --format="value(id)")
-            - echo "$IMAGE_ID"
+            - gcpImageName=$(cat image.txt)
+            - echo $gcpImageName
             - popd
-            
+            - pushd $res_gcp_packer_resourcePath
+            - gcpRegion="us-west1"
+            - arch="x86_64"
+            - gcpImageNameRegion="$gcpRegion-image-for-$arch-centos7"
+            - gcpImageNameRegion=$gcpImageNameRegion-$(($(date +%s%N)/1000000))
+            - gcpImageNameRegion=${gcpImageNameRegion//_/-}
+            - gcpProjectId=pipelines-cloud-stg
+            - gcloud compute images create $gcpImageNameRegion --source-image $gcpImageName --source-image-project $gcpProjectId --storage-location $gcpRegion
+            - IMAGE_ID=$(gcloud compute images list --filter="name=('${gcpImageNameRegion}')" --format="value(id)")
+            - echo $IMAGE_ID
+            - popd
+      - name: u18_gcp
+        type: Bash
+        configuration:
+          inputResources:
+            - name: gcp_packer
+          integrations:
+            - name: gcp
+        execution:
+          onExecute:
+            - echo "Executing testBash.."
+            - printenv
+            - pushd $res_gcp_packer_resourcePath
+            - echo $int_gcp_jsonKey > account.json
+            - rm -rf /tmp/packer && mkdir -p /tmp/packer
+            - PK_FILE="packer_1.5.0_linux_amd64.zip"
+            - wget -nv https://releases.hashicorp.com/packer/1.5.0/$PK_FILE
+            - unzip -o $PK_FILE -d /tmp/packer
+            - sudo chmod +x /tmp/packer/packer
+            - mv /tmp/packer/packer /usr/bin/packer
+            - chmod +x basePack.sh
+            - gcpImageName="u18-image-for-x86-64"
+            - ./basePack.sh pipelines-cloud-stg n1-standard-1 ubuntu-1804-lts us-west1 us-west1-b root account.json test-image-family-u18 u18-poc-deepika $gcpImageName
+            - gcpImageName=$(cat image.txt)
+            - echo $gcpImageName
+            - popd
+            - pushd $res_gcp_packer_resourcePath
+            - gcpRegion="us-west1"
+            - arch="x86_64"
+            - gcpImageNameRegion="$gcpRegion-image-for-$arch-ubuntu18"
+            - gcpImageNameRegion=$gcpImageNameRegion-$(($(date +%s%N)/1000000))
+            - gcpImageNameRegion=${gcpImageNameRegion//_/-}
+            - gcpProjectId=pipelines-cloud-stg
+            - gcloud compute images create $gcpImageNameRegion --source-image $gcpImageName --source-image-project $gcpProjectId --storage-location $gcpRegion
+            - IMAGE_ID=$(gcloud compute images list --filter="name=('${gcpImageNameRegion}')" --format="value(id)")
+            - echo $IMAGE_ID
+            - popd      
