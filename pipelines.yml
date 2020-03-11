@@ -68,7 +68,7 @@ pipelines:
             - arch="x86_64"
             - imageName="c7-image-for-x86-64"
             - ./c7Pack.sh pipelines-cloud-stg n1-standard-1 centos-7 us-west1 us-west1-b centos c7account.json centos c7-poc-deepika $imageName
-            - gcpImageName=$(cat image.txt)
+            - gcpImageName=$(cat c7image.txt)
             - echo $gcpImageName
             - popd
             - pushd $res_gcp_packer_resourcePath
@@ -104,7 +104,7 @@ pipelines:
             - chmod +x basePack.sh
             - gcpImageName="u18-image-for-x86-64"
             - ./basePack.sh pipelines-cloud-stg n1-standard-1 ubuntu-1804-lts us-west1 us-west1-b root account.json test-image-family-u18 u18-poc-deepika $gcpImageName
-            - gcpImageName=$(cat image.txt)
+            - gcpImageName=$(cat u18image.txt)
             - echo $gcpImageName
             - popd
             - pushd $res_gcp_packer_resourcePath
