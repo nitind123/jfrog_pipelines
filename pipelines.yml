@@ -25,6 +25,7 @@ pipelines:
         execution:
           onExecute:
             - node -v
+            - printenv
             - echo "Executing testBash.."
             - restore_cache_files pipeline_state_cache cache.txt
             - add_pipeline_variables pipelineId=$pipeline_id
