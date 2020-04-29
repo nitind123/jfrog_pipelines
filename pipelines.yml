@@ -20,7 +20,7 @@ pipelines:
               custom:
                 registry: dockerRegistry
                 name: shippabledocker/jfreq
-                tag: ${image_tag}
+                tag: $image_tag
                 autoPull: true
           inputResources:
             - name: gitRepo
@@ -35,7 +35,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - echo $(echo "${!step_image_tag}")
+            - echo "$step_image_tag"
             - echo $artifactoryRegistry_url
             - echo $image_tag
             - echo "Executing testBash.."
