@@ -13,7 +13,6 @@ pipelines:
         configuration:
           environmentVariables:
             image_tag: latest
-            artifactoryRegistry_url: pipe-master.jfrog.info:8082
 #           nodePool: u16-dynamic
           runtime:            
             type: image
