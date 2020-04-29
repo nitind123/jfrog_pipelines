@@ -35,7 +35,6 @@ pipelines:
 #                   - "12.14.0"
         execution:
           onExecute:
-            - node -v
             - printenv
             - echo $artifactoryRegistry_url
             - echo $image_tag
