@@ -13,8 +13,16 @@ pipelines:
         configuration:
           environmentVariables:
             image_tag: latest
-            artifactoryRegistry_url: 192.168.50.11:8082
+            artifactoryRegistry_url: 192.168.50.4:8082
 #           nodePool: u16-dynamic
+          runtime:            
+            type: image
+            image:
+              custom:
+                registry: art
+                name: docker-local
+                tag: ${artifactoryRegistry_url}/docker-local/jfreq
+                region: ${image_tag}
           inputResources:
             - name: gitRepo
             
