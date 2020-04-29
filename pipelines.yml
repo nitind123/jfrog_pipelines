@@ -20,7 +20,7 @@ pipelines:
             image:
               custom:
                 registry: dockerRegistry
-                name: shipbeta00/jfreq_win
+                name: shipbeta00/jfreq
                 tag: ${image_tag}
                 autoPull: true
           inputResources:
