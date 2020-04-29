@@ -12,9 +12,8 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            readOnly:
-              image_tag: latest
-              artifactoryRegistry_url: 192.168.50.11:8082
+            image_tag: latest
+            artifactoryRegistry_url: 192.168.50.11:8082
 #           nodePool: u16-dynamic
           inputResources:
             - name: gitRepo
