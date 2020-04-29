@@ -21,7 +21,7 @@ pipelines:
               custom:
                 registry: art
                 sourceRepository: docker-local
-                name: ${artifactoryRegistry_url}/docker-local/jfreq
+                name: ${artifactoryRegistry_url}/docker-local/myalpine
                 tag: ${image_tag}
                 autoPull: true
           inputResources:
