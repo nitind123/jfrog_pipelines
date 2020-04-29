@@ -20,9 +20,10 @@ pipelines:
             image:
               custom:
                 registry: art
-                name: docker-local
-                tag: ${artifactoryRegistry_url}/docker-local/jfreq
-                region: ${image_tag}
+                sourceRepository: docker-local
+                name: ${artifactoryRegistry_url}/docker-local/jfreq
+                tag: ${image_tag}
+                autoPull: true
           inputResources:
             - name: gitRepo
             
