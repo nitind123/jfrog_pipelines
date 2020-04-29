@@ -11,6 +11,10 @@ pipelines:
       - name: testBash
         type: Bash
         configuration:
+          environmentVariables:
+            readOnly:
+              image_tag: latest
+              artifactoryRegistry_url: 192.168.50.11:8082
 #           nodePool: u16-dynamic
           inputResources:
             - name: gitRepo
@@ -26,6 +30,8 @@ pipelines:
           onExecute:
             - node -v
             - printenv
+            - echo $artifactoryRegistry_url
+            - echo $image_tag
             - echo "Executing testBash.."
             - restore_cache_files pipeline_state_cache cache.txt
             - add_pipeline_variables pipelineId=$pipeline_id
