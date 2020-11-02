@@ -2,7 +2,7 @@ resources:
   - name: github_new
     type: GitRepo
     configuration:
-      path: deepikasl/VT2
+      path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
 
 pipelines:
