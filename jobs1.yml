@@ -2,8 +2,8 @@ resources:
   - name: deeps_github
     type: GitRepo
     configuration:
-      path: deepikasl/VT2
-      gitProvider: deepikaGithub
+      path: deepikasl/jfrog_pipelines
+      gitProvider: deepikaGit
  
 pipelines:
   - name: deeps_pipeline
