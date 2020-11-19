@@ -4,6 +4,15 @@ resources:
     configuration:
       path: deepikasl/VT2
       gitProvider: deepikaGithub
+  - name: jfrogFEFS_cp
+    type: FileSpec
+    configuration:
+      sourceArtifactory: entArt
+      pattern: "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-linux.tar.gz"
+      recursive: false
+      limit: 3
+      sortBy: created
+      sortOrder: desc
 
 pipelines:
   - name: pipeline_new
@@ -13,6 +22,7 @@ pipelines:
         configuration:
           inputResources:
             - name: github_new
+            - name: jfrogFEFS_cp
         execution:
           onExecute:
             - echo "executing bash step..."
