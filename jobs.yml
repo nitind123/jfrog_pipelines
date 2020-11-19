@@ -12,7 +12,7 @@ resources:
       recursive: false
       limit: 1
       sortBy: created
-#       sortOrder: desc
+      sortOrder: desc
 
 pipelines:
   - name: pipeline_new
