@@ -12,7 +12,8 @@ resources:
       recursive: false
       limit: 1
       excludePatterns: "testing"
-      sortBy: "[created]"
+      sortBy:
+        - "created"
       sortOrder: "desc"
 
 pipelines:
