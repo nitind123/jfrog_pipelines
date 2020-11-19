@@ -11,8 +11,8 @@ resources:
       pattern: "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-linux.tar.gz"
       recursive: false
       limit: 1
-      sortBy: created
-      sortOrder: desc
+      sortBy: "created"
+      sortOrder: "desc"
 
 pipelines:
   - name: pipeline_new
