@@ -14,7 +14,7 @@ resources:
       excludePatterns: 
         - "testing"
       sortBy:
-        - "created"
+        - created
       sortOrder: "desc"
 
 pipelines:
