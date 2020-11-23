@@ -15,6 +15,7 @@ resources:
         - "testing"
       sortBy:
         - created
+        - test
       sortOrder: "desc"
 
 pipelines:
