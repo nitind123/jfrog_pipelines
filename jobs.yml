@@ -13,10 +13,10 @@ resources:
       limit: 1
       excludePatterns: 
         - "testing"
-      sortBy:
-        - created
-        - name
-      sortOrder: "desc"
+#       sortBy:
+#         - created
+#         - name
+#       sortOrder: "desc"
 
 pipelines:
   - name: pipeline_new
