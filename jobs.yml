@@ -10,13 +10,10 @@ resources:
       sourceArtifactory: entArt
       pattern: "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-linux.tar.gz"
       recursive: false
-      limit: 1
-      excludePatterns: 
-        - "testing"
-#       sortBy:
-#         - created
-#         - name
-#       sortOrder: "desc"
+      limit: 3
+      sortBy:
+        - created
+      sortOrder: "desc"
 
 pipelines:
   - name: pipeline_new
