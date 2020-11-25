@@ -8,7 +8,7 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: entArt
-      pattern: "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*.[tar.gz]"
+      pattern: 'libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*.[tar.gz]'
       excludePatterns:
         - "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*.pom"
       recursive: false
