@@ -8,8 +8,8 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: entArt
-      pattern: \blibs\-releases\-local\/com\/jfrog\/platform]\/jfrog\-frontend\-bin\/1\.*\/jfrog\-frontend\-bin\-1\.*\-linux\.tar\.gz\b
-      excludePatterns:
+      pattern: "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*"
+      exclusions:
         - "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*.pom"
       recursive: false
       limit: 3
