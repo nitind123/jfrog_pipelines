@@ -24,7 +24,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: github_new
+#             - name: github_new
             - name: jfrogFEFS_cp
         execution:
           onExecute:
