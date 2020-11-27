@@ -15,6 +15,7 @@ resources:
       limit: 1
       sortBy:
         - created
+        - name
       sortOrder: "desc"
 
 pipelines:
