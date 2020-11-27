@@ -12,7 +12,7 @@ resources:
       exclusions:
         - "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*.pom"
       recursive: false
-      limit: 3
+      limit: 1
       sortBy:
         - created
       sortOrder: "desc"
