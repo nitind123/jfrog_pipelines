@@ -31,4 +31,9 @@ pipelines:
           onExecute:
             - echo "executing bash step..."
             - printenv
+            - jfrogFEVersion=$(find $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/. -mindepth 1 -maxdepth 1 -type d)
+            - jfrogFEVersion=${jfrogFEVersion//.\/}
+            - jq --arg value0 "$jfrogFEVersion" '. | .frontendVersion=$value0' <<<'{}' > ./manifest.json
+            - echo $jfrogFEVersion
+            - cat manifest.json
   
