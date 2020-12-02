@@ -27,7 +27,7 @@ resources:
         key2: value2
       mappings:
         - name: mapping1
-          input: IN
+          input: "/jfrog-\"fronten\"d-bin/1.*/jfrog-frontend-bin-1.*-*."
           output: test1
         - name: mapping2
           input: IN
@@ -41,7 +41,7 @@ pipelines:
         configuration:
           inputResources:
             - name: github_new
-            - name: jfrogFEFS_cp
+#             - name: jfrogFEFS_cp
             - name: S_Bash_0082_Aql
         execution:
           onExecute:
