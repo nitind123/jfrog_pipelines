@@ -5,11 +5,11 @@ resources:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
   - name: S_Bash_0219_vmCluster
-     type: VmCluster
-     configuration:
-       sshKey: BSR_SSHKeys
-       targets:
-         - 1.2.3.4
+    type: VmCluster
+    configuration:
+      sshKey: BSR_SSHKeys
+      targets:
+        - 1.2.3.4
   - name: jfrogFEFS_cp
     type: FileSpec
     configuration:
