@@ -14,8 +14,8 @@ resources:
       recursive: false
       limit: 1
       sortBy:
-        - created
-        - name
+        - "created"
+        - "name"
       sortOrder: "desc"
 
 pipelines:
