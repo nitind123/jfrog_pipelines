@@ -17,6 +17,21 @@ resources:
         - "created"
         - "name"
       sortOrder: "desc"
+  - name: S_Bash_0082_Aql
+    type: Aql
+    configuration:
+      sourceArtifactory: s_artifactory
+      query: items.find({"@build.name":{"$eq":"artifactory"}})
+      addedProperties:
+        key1: value1
+        key2: value2
+      mappings:
+        - name: mapping1
+          input: IN
+          output: test1
+        - name: mapping2
+          input: IN
+          output: test2
 
 pipelines:
   - name: pipeline_new
@@ -27,15 +42,16 @@ pipelines:
           inputResources:
             - name: github_new
             - name: jfrogFEFS_cp
+            - name: S_Bash_0082_Aql
         execution:
           onExecute:
             - echo "executing bash step..."
             - printenv
-            - pushd $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin
-            - jfrogFEVersion=$(find . -mindepth 1 -maxdepth 1 -type d)
-            - popd
-            - jfrogFEVersion=${jfrogFEVersion//.\/}
-            - jq --arg value0 "$jfrogFEVersion" '. | .frontendVersion=$value0' <<<'{}' > ./manifest.json
-            - echo $jfrogFEVersion
-            - cat manifest.json
+#             - pushd $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin
+#             - jfrogFEVersion=$(find . -mindepth 1 -maxdepth 1 -type d)
+#             - popd
+#             - jfrogFEVersion=${jfrogFEVersion//.\/}
+#             - jq --arg value0 "$jfrogFEVersion" '. | .frontendVersion=$value0' <<<'{}' > ./manifest.json
+#             - echo $jfrogFEVersion
+#             - cat manifest.json
   
