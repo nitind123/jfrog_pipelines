@@ -14,7 +14,7 @@ resources:
       recursive: false
       limit: 1
       sortBy:
-        - "crea"t"ed"
+        - "crea\"t\"ed"
         - "name"
       sortOrder: "desc"
 
