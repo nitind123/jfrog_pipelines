@@ -53,11 +53,16 @@ pipelines:
           onExecute:
             - echo "executing bash step..."
             - printenv
-#             - pushd $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin
-#             - jfrogFEVersion=$(find . -mindepth 1 -maxdepth 1 -type d)
-#             - popd
-#             - jfrogFEVersion=${jfrogFEVersion//.\/}
-#             - jq --arg value0 "$jfrogFEVersion" '. | .frontendVersion=$value0' <<<'{}' > ./manifest.json
-#             - echo $jfrogFEVersion
-#             - cat manifest.json
+            - pushd $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin
+            - jfrogFEVersion=$(find $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/. -mindepth 1 -maxdepth 1 -type d)
+            - popd
+            - jfrogFEVersion=${jfrogFEVersion//.\/}
+            - jq --arg value0 "$jfrogFEVersion" '. | .frontendVersion=$value0' <<<'{}' > ../frontend/lib/manifest.json
+            - tar zxvf $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest.tar.gz -C ../frontend/lib/
+            - cp -vr $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-darwin.tar.gz ../frontend/lib/$jfrogFEVersion-darwin.tar.gz
+            - cp -vr $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-linux.tar.gz ../frontend/lib/$jfrogFEVersion-linux.tar.gz
+            - cp -vr $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-windows.zip ../frontend/lib/$jfrogFEVersion-windows.zip
+            - pushd ../frontend/lib
+            - ls
+            - popd
   
