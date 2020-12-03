@@ -61,6 +61,8 @@ pipelines:
             - echo $jfrogFEVersion
 #             - jq --arg value0 "$jfrogFEVersion" '. | .frontendVersion=$value0' <<<'{}' > ../frontend/lib/manifest.json
             - tar zxvf $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest.tar.gz -C ../frontend/lib/
+            - mv ../frontend/lib/frontend/manifest.json ../frontend/lib/manifest.json
+            - rm -rf ../frontend/lib/frontend
             - cp -vr $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-darwin.tar.gz ../frontend/lib/$jfrogFEVersion-darwin.tar.gz
             - cp -vr $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-linux.tar.gz ../frontend/lib/$jfrogFEVersion-linux.tar.gz
             - cp -vr $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-windows.zip ../frontend/lib/$jfrogFEVersion-windows.zip
