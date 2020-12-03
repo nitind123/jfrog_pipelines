@@ -14,14 +14,13 @@ resources:
     type: FileSpec
     configuration:
       sourceArtifactory: entArt
-      pattern: "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*"
+      pattern: "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/*/jfrog-frontend-bin-*-*"
       exclusions:
-        - "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/1.*/jfrog-frontend-bin-1.*-*.pom"
+        - "libs-releases-local/com/jfrog/platform/jfrog-frontend-bin/*/jfrog-frontend-bin-*-*.pom"
       recursive: false
-      limit: 1
+      limit: 4
       sortBy:
         - "created"
-        - "name"
       sortOrder: "desc"
   - name: S_Bash_0082_Aql
     type: Aql
@@ -46,10 +45,10 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: github_new
-#             - name: jfrogFEFS_cp
-            - name: S_Bash_0082_Aql
-            - name: S_Bash_0219_vmCluster
+#             - name: github_new
+            - name: jfrogFEFS_cp
+#             - name: S_Bash_0082_Aql
+#             - name: S_Bash_0219_vmCluster
         execution:
           onExecute:
             - echo "executing bash step..."
