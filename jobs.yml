@@ -54,9 +54,9 @@ pipelines:
             - echo "executing bash step..."
             - printenv
             - rm -rf ../frontend && mkdir -p ../frontend/lib
-#             - pushd $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin
-            - jfrogFEVersion=$(find $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/. -mindepth 1 -maxdepth 1 -type d)
-#             - popd
+            - pushd $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin
+            - jfrogFEVersion=$(find . -mindepth 1 -maxdepth 1 -type d)
+            - popd
             - jfrogFEVersion=${jfrogFEVersion//.\/}
             - echo $jfrogFEVersion
 #             - jq --arg value0 "$jfrogFEVersion" '. | .frontendVersion=$value0' <<<'{}' > ../frontend/lib/manifest.json
