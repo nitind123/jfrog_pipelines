@@ -60,7 +60,7 @@ pipelines:
             - jfrogFEVersion=${jfrogFEVersion//.\/}
             - echo "$jfrogFEVersion"
             - |
-              if [ -z "$res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/1.12.0-m049/jfrog-frontend-bin-1.12.0-m049-manifest.tar.gz" ]
+              if [[ -f "$res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest.tar.gz" ]]
               then
                 tar zxvf $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest.tar.gz -C ../frontend/lib/
                 mv ../frontend/lib/frontend/manifest.json ../frontend/lib/manifest.json
