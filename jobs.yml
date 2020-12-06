@@ -59,9 +59,9 @@ pipelines:
             - popd
             - jfrogFEVersion=${jfrogFEVersion//.\/}
             - |
-              if [ -z "$res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest1.tar.gz" ]
+              if [ -z "$res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest.tar.gz" ]
               then
-                tar zxvf $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest1.tar.gz -C ../frontend/lib/
+                tar zxvf $res_jfrogFEFS_cp_resourcePath/com/jfrog/platform/jfrog-frontend-bin/$jfrogFEVersion/jfrog-frontend-bin-$jfrogFEVersion-manifest.tar.gz -C ../frontend/lib/
                 mv ../frontend/lib/frontend/manifest.json ../frontend/lib/manifest.json
                 rm -rf ../frontend/lib/frontend
               fi
