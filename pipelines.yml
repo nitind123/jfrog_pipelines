@@ -14,14 +14,14 @@ pipelines:
           environmentVariables:
             image_tag: latest
 #           nodePool: u16-dynamic
-          runtime:            
-            type: image
-            image:
-              custom:
-                registry: dockerRegistry
-                name: shippabledocker/jfreq
-                tag: $image_tag
-                autoPull: true
+#           runtime:            
+#             type: image
+#             image:
+#               custom:
+#                 registry: dockerRegistry
+#                 name: shippabledocker/jfreq
+#                 tag: $image_tag
+#                 autoPull: true
           inputResources:
             - name: gitRepo
             
