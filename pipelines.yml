@@ -3,8 +3,7 @@ resources:
     type: shippable/GitRepo
     syntaxVersion: 1.0.0
     configuration:
-      name:
-        type: test
+      name: test
   - name: gitRepo
     type: GitRepo
     configuration:
