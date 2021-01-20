@@ -1,4 +1,9 @@
 resources:
+  - name: test
+    type: shippable/GitRepo
+    syntaxVersion: 1.0.0
+    configuration:
+      test: 21
   - name: github_new
     type: GitRepo
     configuration:
