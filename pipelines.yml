@@ -6,7 +6,7 @@ resources:
       name: test
   - name: test1
     type: shippable/GitRepo
-    syntaxVersion: 1.0.4
+    syntaxVersion: 1.0.1
     configuration:
       name: test
   - name: gitRepo
