@@ -19,6 +19,11 @@ resources:
     syntaxVersion: latest
     configuration:
       name: test
+  - name: foofoo
+    type: foo/foo
+    syntaxVersion: latest
+    configuration:
+      name: test
   - name: DockerPsh
     type: DockerPsh
     syntaxVersion: latest
