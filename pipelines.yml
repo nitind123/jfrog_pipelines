@@ -1,7 +1,7 @@
 resources:
   - name: test
     type: shippable/GitRepo
-    syntaxVersion: 1.0.5
+    syntaxVersion: 1.0.0
     configuration:
       name: test
   - name: test1
