@@ -9,26 +9,26 @@ resources:
 #     syntaxVersion: 1.0.1
 #     configuration:
 #       name: test
-  - name: shippablefoo
-    type: shippable/foo
-    syntaxVersion: latest
-    configuration:
-      name: test
-  - name: foo
-    type: foo
-    syntaxVersion: latest
-    configuration:
-      name: test
-  - name: foofoo
-    type: foo/foo
-    syntaxVersion: latest
-    configuration:
-      name: test
-  - name: DockerPsh
-    type: DockerPsh
-    syntaxVersion: latest
-    configuration:
-      name: test
+#   - name: shippablefoo
+#     type: shippable/foo
+#     syntaxVersion: latest
+#     configuration:
+#       name: test
+#   - name: foo
+#     type: foo
+#     syntaxVersion: latest
+#     configuration:
+#       name: test
+#   - name: foofoo
+#     type: foo/foo
+#     syntaxVersion: latest
+#     configuration:
+#       name: test
+#   - name: DockerPsh
+#     type: DockerPsh
+#     syntaxVersion: latest
+#     configuration:
+#       name: test
   - name: gitRepo
     type: GitRepo
     configuration:
