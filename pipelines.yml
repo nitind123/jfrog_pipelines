@@ -44,9 +44,9 @@ pipelines:
         configuration:
           inputSteps:
             - name: testBash
-        execution:
-          onExecute:
-            - echo "Executing testBash.."
+#         execution:
+#           onExecute:
+#             - echo "Executing testBash.."
       - name: testBash
         type: Bash
         configuration:
