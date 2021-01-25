@@ -40,7 +40,7 @@ pipelines:
     steps:
       - name: sampleStep
         type: shippable/sampleStep
-        syntaxVersion: 11.0.0
+        syntaxVersion: 1.11.1
         configuration:
           inputSteps:
             - name: testBash
