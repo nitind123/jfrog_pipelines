@@ -1,14 +1,14 @@
 resources:
-  - name: test
-    type: shippable/GitRepo
-    syntaxVersion: 1.0.0
-    configuration:
-      name: test
-  - name: test1
-    type: shippable/GitRepo
-    syntaxVersion: 1.0.1
-    configuration:
-      name: test
+#   - name: test
+#     type: shippable/GitRepo
+#     syntaxVersion: 1.0.0
+#     configuration:
+#       name: test
+#   - name: test1
+#     type: shippable/GitRepo
+#     syntaxVersion: 1.0.1
+#     configuration:
+#       name: test
 #   - name: shippablefoo
 #     type: shippable/foo
 #     syntaxVersion: latest
@@ -32,22 +32,22 @@ resources:
   - name: gitRepo
     type: GitRepo
     configuration:
-      path: deepikasl/VT1
+      path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
 
 pipelines:
   - name: bash_pipeline
     steps:
-      - name: sampleStep
-        type: shippable/sampleStep
-        syntaxVersion: 1.11.1
-        configuration:
-          inputSteps:
-            - name: testBash
-#         execution:
-#           onExecute:
-#             - echo "Executing testBash.."
-      - name: testBash
+#       - name: sampleStep
+#         type: shippable/sampleStep
+#         syntaxVersion: 1.11.1
+#         configuration:
+#           inputSteps:
+#             - name: testBash
+# #         execution:
+# #           onExecute:
+# #             - echo "Executing testBash.."
+#       - name: testBash
         type: Bash
         configuration:
           environmentVariables:
