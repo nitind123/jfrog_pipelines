@@ -47,7 +47,7 @@ pipelines:
 # #         execution:
 # #           onExecute:
 # #             - echo "Executing testBash.."
-#       - name: testBash
+      - name: testBash
         type: Bash
         configuration:
           environmentVariables:
