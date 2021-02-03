@@ -74,6 +74,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - df -h
             - echo $"step_image_tag='$image_tag'"
             - echo $artifactoryRegistry_url
             - echo $image_tag
