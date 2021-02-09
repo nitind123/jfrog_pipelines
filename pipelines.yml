@@ -29,14 +29,14 @@ resources:
 #     syntaxVersion: latest
 #     configuration:
 #       name: test
-  - name: gitRepo
+  - name: gitRepo2
     type: GitRepo
     configuration:
       path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
+      gitProvider: deepikaGithub2
 
 pipelines:
-  - name: bash_pipeline
+  - name: bash_pipeline2
     steps:
 #       - name: sampleStep
 #         type: shippable/sampleStep
@@ -47,7 +47,7 @@ pipelines:
 # #         execution:
 # #           onExecute:
 # #             - echo "Executing testBash.."
-      - name: testBash
+      - name: testBash2
         type: Bash
         configuration:
           environmentVariables:
@@ -62,7 +62,7 @@ pipelines:
 #                 tag: $image_tag
 #                 autoPull: true
           inputResources:
-            - name: gitRepo
+            - name: gitRepo2
             
 #           runtime:            
 #             type: image
@@ -88,11 +88,11 @@ pipelines:
             - add_pipeline_files pipeline_state.txt pipeline_state_file
             - echo "state=$run_number" > run_state.txt
             - add_run_files run_state.txt run_state_file
-      - name: restoreBash
+      - name: restoreBash2
         type: Bash
         configuration:
           inputSteps:
-            - name: testBash
+            - name: testBash2
 #           runtime:            
 #             type: image
 #             image:
