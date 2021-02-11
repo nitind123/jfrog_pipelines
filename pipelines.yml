@@ -1,34 +1,4 @@
 resources:
-#   - name: test
-#     type: shippable/GitRepo
-#     syntaxVersion: 1.0.0
-#     configuration:
-#       name: test
-#   - name: test1
-#     type: shippable/GitRepo
-#     syntaxVersion: 1.0.1
-#     configuration:
-#       name: test
-#   - name: shippablefoo
-#     type: shippable/foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: foo
-#     type: foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: foofoo
-#     type: foo/foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: DockerPsh
-#     type: DockerPsh
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
   - name: gitRepo
     type: GitRepo
     configuration:
@@ -36,98 +6,43 @@ resources:
       gitProvider: deepikaGithub
 
 pipelines:
-  - name: bash_pipeline
+  - name: aws_bash_pipeline
     steps:
-#       - name: sampleStep
-#         type: shippable/sampleStep
-#         syntaxVersion: 1.11.1
-#         configuration:
-#           inputSteps:
-#             - name: testBash
-# #         execution:
-# #           onExecute:
-# #             - echo "Executing testBash.."
-      - name: testBash
+      - name: testBash_aws
         type: Bash
         configuration:
-          environmentVariables:
-            image_tag: latest
-#           nodePool: u16-dynamic
-#           runtime:            
-#             type: image
-#             image:
-#               custom:
-#                 registry: dockerRegistry
-#                 name: shippabledocker/jfreq
-#                 tag: $image_tag
-#                 autoPull: true
+          nodePool: aws
           inputResources:
             - name: gitRepo
-            
-#           runtime:            
-#             type: image
-#             image:
-#               auto:
-#                 language: node
-#                 versions:
-#                   - "12.14.0"
         execution:
           onExecute:
-            - printenv
-            - df -h
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:8
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:10
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:12
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20node:8
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20node:10
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20node:12
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20java:15
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20java:11	
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20java:8	
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:14
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:13
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:11
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:8
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:14
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:13	
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:11
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:8
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.15.2
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.14.4
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.13.12
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.12.17
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.11.13
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.15.2
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.14.4
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.13.12
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.12.17
+            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.11.13
             - docker images        
-            - cd /opt
-            - pwd
-            - docker images
             - df -h
-            - fallocate -l 10G huge_file.dat
-            - df -h
-            - fallocate -l 10G huge_file.dat1
-            - df -h
-            - fallocate -l 10G huge_file.dat2
-            - fallocate -l 10G huge_file.dat13
-            - df -h
-            - fallocate -l 1G huge_file.dat3
-            - df -h
-            - fallocate -l 5G huge_file.dat4
-            - df -h
-            - fallocate -l 1G huge_file.dat5
-            - fallocate -l 5G huge_file.dat11
-            - df -h
-            - fallocate -l 1G huge_file.dat12
-            - df -h
-            - fallocate -l 1G huge_file.dat6
-            - fallocate -l 1G huge_file.dat7
-            - df -h
-            - fallocate -l 1G huge_file.dat8
-            - df -h
-            - fallocate -l 1G huge_file.dat9
-            - echo $"step_image_tag='$image_tag'"
-            - echo $artifactoryRegistry_url
-            - echo $image_tag
-            - echo "Executing testBash.."
-            - restore_cache_files pipeline_state_cache cache.txt
-            - add_pipeline_variables pipelineId=$pipeline_id
-            - add_run_variables runId=$run_number	
-            - echo "state=$run_number" > cache.txt
-            - add_cache_files cache.txt pipeline_state_cache
-            - echo "state=$run_number" > pipeline_state.txt
-            - add_pipeline_files pipeline_state.txt pipeline_state_file
-            - echo "state=$run_number" > run_state.txt
-            - add_run_files run_state.txt run_state_file
-      - name: restoreBash
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: testBash
-#           runtime:            
-#             type: image
-#             image:
-#               custom:
-#                 name: shippabledocker/jfreq
-#                 tag: latest
-        execution:
-          onExecute:
-            - echo "Executing restoreBash.."
-            - restore_pipeline_files pipeline_state_file pipeline_state.txt
-            - restore_run_files run_state_file run_state.txt
+            - echo "Executing testBash_aws step"
