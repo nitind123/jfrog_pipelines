@@ -75,7 +75,8 @@ pipelines:
           onExecute:
             - printenv
             - df -h
-            - docker images        
+            - docker images     
+            - docker pull docker.bintray.io/jfrog/pipelines-u16cpp:8.0.0
             - cd /opt
             - pwd
             - docker images
