@@ -73,37 +73,32 @@ pipelines:
 #                   - "12.14.0"
         execution:
           onExecute:
-            - printenv
+#             - printenv
             - df -h
             - docker images     
-            - docker pull docker.bintray.io/jfrog/pipelines-u16cpp:8.0.0
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:8.0.0
-            - cd /opt
-            - pwd
-            - docker images
             - df -h
             - fallocate -l 10G huge_file.dat
             - df -h
             - fallocate -l 10G huge_file.dat1
             - df -h
-            - fallocate -l 10G huge_file.dat2
-            - fallocate -l 10G huge_file.dat13
-            - df -h
-            - fallocate -l 1G huge_file.dat3
-            - df -h
-            - fallocate -l 5G huge_file.dat4
-            - df -h
-            - fallocate -l 1G huge_file.dat5
-            - fallocate -l 5G huge_file.dat11
-            - df -h
-            - fallocate -l 1G huge_file.dat12
-            - df -h
-            - fallocate -l 1G huge_file.dat6
-            - fallocate -l 1G huge_file.dat7
-            - df -h
-            - fallocate -l 1G huge_file.dat8
-            - df -h
-            - fallocate -l 1G huge_file.dat9
+#             - fallocate -l 10G huge_file.dat2
+#             - fallocate -l 10G huge_file.dat13
+#             - df -h
+#             - fallocate -l 1G huge_file.dat3
+#             - df -h
+#             - fallocate -l 5G huge_file.dat4
+#             - df -h
+#             - fallocate -l 1G huge_file.dat5
+#             - fallocate -l 5G huge_file.dat11
+#             - df -h
+#             - fallocate -l 1G huge_file.dat12
+#             - df -h
+#             - fallocate -l 1G huge_file.dat6
+#             - fallocate -l 1G huge_file.dat7
+#             - df -h
+#             - fallocate -l 1G huge_file.dat8
+#             - df -h
+#             - fallocate -l 1G huge_file.dat9
             - echo $"step_image_tag='$image_tag'"
             - echo $artifactoryRegistry_url
             - echo $image_tag
