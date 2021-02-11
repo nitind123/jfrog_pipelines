@@ -1,48 +1,21 @@
 resources:
-  - name: gitRepo_aws
+  - name: gitRepo_gcp
     type: GitRepo
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
 
 pipelines:
-  - name: aws_bash_pipeline
+  - name: gcp_bash_pipeline
     steps:
-      - name: testBash_aws
+      - name: testBash_gcp
         type: Bash
         configuration:
-          nodePool: aws
+          nodePool: gcp
           inputResources:
-            - name: gitRepo_aws
+            - name: gitRepo_gcp
         execution:
           onExecute:
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:8
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:10
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:12
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20node:8
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20node:10
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20node:12
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20java:15
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20java:11	
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20java:8	
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:14
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:13
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:11
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:8
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:14
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:13	
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:11
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:8
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.15.2
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.14.4
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.13.12
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.12.17
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u20go:1.11.13
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.15.2
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.14.4
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.13.12
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.12.17
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.11.13
             - docker images        
             - df -h
-            - echo "Executing testBash_aws step"
+            - echo "Executing testBash_gcp step"
