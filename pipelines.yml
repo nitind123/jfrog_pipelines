@@ -1,5 +1,5 @@
 resources:
-  - name: gitRepo
+  - name: gitRepo_aws
     type: GitRepo
     configuration:
       path: deepikasl/jfrog_pipelines
@@ -13,7 +13,7 @@ pipelines:
         configuration:
           nodePool: aws
           inputResources:
-            - name: gitRepo
+            - name: gitRepo_aws
         execution:
           onExecute:
             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:8
