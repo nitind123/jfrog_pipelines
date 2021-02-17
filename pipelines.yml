@@ -34,8 +34,31 @@ resources:
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
+  - name: script
+    type: GitRepo
+    configuration:
+      path: deepikasl/sample-script
+      gitProvider: deepikaGithub
 
 pipelines:
+  - name: test_stepTestReports
+    steps:
+      - name: testReport
+        type: Bash
+        configuration:
+          inputResources:
+            - name: script
+        execution:
+          onExecute:
+            - cd $res_script_resourcePath
+            - ls
+            - python -m py_compile calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest           
+            - py.test --verbose --junit-xml test-reports/results.xml test_calc.py
+          onComplete:
+            - save_tests $res_script_resourcePath/test-reports/results.xml
   - name: bash_pipeline
     steps:
 #       - name: sampleStep
@@ -75,12 +98,12 @@ pipelines:
           onExecute:
 #             - printenv
             - df -h
-            - docker images     
-            - df -h
-            - fallocate -l 10G huge_file.dat
-            - df -h
-            - fallocate -l 10G huge_file.dat1
-            - df -h
+#             - docker images     
+#             - df -h
+#             - fallocate -l 10G huge_file.dat
+#             - df -h
+#             - fallocate -l 10G huge_file.dat1
+#             - df -h
 #             - fallocate -l 10G huge_file.dat2
 #             - fallocate -l 10G huge_file.dat13
 #             - df -h
