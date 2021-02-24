@@ -151,3 +151,35 @@ pipelines:
             - echo "Executing restoreBash.."
             - restore_pipeline_files pipeline_state_file pipeline_state.txt
             - restore_run_files run_state_file run_state.txt
+      - name: stepA_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: testBash
+        execution:
+          onExecute:
+            - echo "Executing stepA_1.."
+      - name: stepA_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: stepA_1
+        execution:
+          onExecute:
+            - echo "Executing stepA_2.."
+      - name: stepB_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: restoreBash
+        execution:
+          onExecute:
+            - echo "Executing stepB_1.."
+      - name: stepB_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: stepB_1
+        execution:
+          onExecute:
+            - echo "Executing stepB_2.."
