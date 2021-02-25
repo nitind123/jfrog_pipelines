@@ -183,3 +183,27 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing stepB_2.."
+      - name: stepB_3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: stepB_2
+        execution:
+          onExecute:
+            - echo "Executing stepB_3.."
+      - name: stepB_4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: stepB_3
+        execution:
+          onExecute:
+            - echo "Executing stepB_4.."
+      - name: stepB_5
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: stepB_4
+        execution:
+          onExecute:
+            - echo "Executing stepB_5.."
