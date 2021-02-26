@@ -50,7 +50,6 @@ pipelines:
             - name: script
         execution:
           onExecute:
-            - echo "This is to test"
             - cd $res_script_resourcePath
             - ls
             - python -m py_compile calc.py
