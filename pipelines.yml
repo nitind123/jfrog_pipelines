@@ -50,6 +50,7 @@ pipelines:
             - name: script
         execution:
           onExecute:
+            - echo "testing webhook"
             - cd $res_script_resourcePath
             - ls -al
             - python -m py_compile calc.py
