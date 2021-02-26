@@ -4,6 +4,7 @@ resources:
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
+      
   - name: S_Bash_0219_vmCluster
     type: VmCluster
     configuration:
