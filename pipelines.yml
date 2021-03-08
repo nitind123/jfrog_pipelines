@@ -4,6 +4,8 @@ resources:
     configuration:
       path: deepikasl/sample-script
       gitProvider: deepikaGithub
+      branches:
+        include: ^{{gitBranch}}$
 
 pipelines:
   - name: demo_triggeredBy
