@@ -17,5 +17,4 @@ pipelines:
           onExecute:
             - echo "executing bash step..12345678911223445"
             - echo "hey there"
-            - echo "test"
   
