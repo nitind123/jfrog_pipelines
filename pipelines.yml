@@ -25,7 +25,7 @@ pipelines:
             - echo "1234"
             - echo "hope"
             - echo "lalla"
-            - echo "you are here"
+            - echo "you are heremshdcsd"
             - echo "test12345"
             - echo "test"
             
