@@ -15,5 +15,5 @@ pipelines:
             - name: deeps_github
         execution:
           onExecute:
-            - echo "executing bash step..."
+            - echo "executing bash step....."
   
