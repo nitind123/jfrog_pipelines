@@ -6,15 +6,31 @@ resources:
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
+  - name: propertyBag
+    type: PropertyBag
+    configuration:
+      foo: bar
+      foo1: bar1
+      foo2: bar2
 
 pipelines:
   - name: demo_monorepo
     steps:
+      - name: manual_trigger
+        type: Bash
+        configuration:
+          outputResources:
+            - name: propertyBag
+        execution:
+          onExecute:
+            - write_output propertyBag "foo=bash_demo"
+        
       - name: demoBash_monorepo
         type: Bash
         configuration:
           inputResources:
             - name: myRepo
+            - name: propertyBag
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
