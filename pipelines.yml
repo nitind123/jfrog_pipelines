@@ -22,5 +22,6 @@ pipelines:
             - echo "before1"
             - echo "hello"
             - echo "test"
+            - echo "123"
             
             
