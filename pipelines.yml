@@ -23,7 +23,7 @@ pipelines:
             - name: propertyBag
         execution:
           onExecute:
-            - write_output propertyBag "foo=bash_demo"
+            - write_output propertyBag "foo=$run_number"
   - name: demo_monorepo
     steps:    
       - name: demoBash_monorepo
