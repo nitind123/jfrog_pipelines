@@ -14,7 +14,7 @@ resources:
       foo2: bar2
 
 pipelines:
-  - name: demo_monorepo
+  - name: demo_manual
     steps:
       - name: manual_trigger
         type: Bash
@@ -24,7 +24,8 @@ pipelines:
         execution:
           onExecute:
             - write_output propertyBag "foo=bash_demo"
-        
+  - name: demo_monorepo
+    steps:    
       - name: demoBash_monorepo
         type: Bash
         configuration:
