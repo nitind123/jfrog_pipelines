@@ -19,6 +19,6 @@ pipelines:
           onExecute:
             - echo "Executing demoBash_monorepo"
             - printenv
-            - echo "before123"
+            - echo "before123456"
             
             
