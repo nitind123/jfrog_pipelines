@@ -20,13 +20,4 @@ pipelines:
             - echo "Executing demoBash_monorepo"
             - printenv
             - echo "before1"
-            - echo "hello"
-            - echo "test"
-            - echo "1234"
-            - echo "hope"
-            - echo "lalla"
-            - echo "you are heremshdcsd"
-            - echo "test12345"
-            - echo "test"
-            - echo "12334543e4545"
             
