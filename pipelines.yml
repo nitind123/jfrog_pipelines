@@ -20,5 +20,6 @@ pipelines:
             - echo "Executing demoBash_monorepo"
             - printenv
             - echo "before1"
+            - echo "hello"
             
             
