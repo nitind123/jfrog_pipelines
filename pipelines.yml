@@ -1,22 +1,22 @@
 resources:
-  - name: script_1
+  - name: myRepo
     type: GitRepo
     configuration:
-      path: deepikasl/sample-script
+      path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
 
 pipelines:
-  - name: demo_triggeredBy
+  - name: demo_monorepo
     steps:
-      - name: demoBash
+      - name: demoBash_monorepo
         type: Bash
         configuration:
           inputResources:
-            - name: script_1
+            - name: myRepo
         execution:
           onExecute:
-            - echo "Executing demoBash"
+            - echo "Executing demoBash_monorepo"
             - printenv
             
