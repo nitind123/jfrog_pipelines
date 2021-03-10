@@ -19,6 +19,6 @@ pipelines:
           onExecute:
             - echo "Executing demoBash_monorepo"
             - printenv
-            - echo "before"
+            - echo "before1"
             
             
