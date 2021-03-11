@@ -37,4 +37,5 @@ pipelines:
             - echo "Executing demoBash_monorepo"
             - printenv
             - echo "missing commit"
+            - echo "missing commit"
             
