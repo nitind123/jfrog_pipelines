@@ -6,6 +6,13 @@ resources:
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
+  - name: newRepo
+    type: GitRepo
+    configuration:
+      path: deepikasl/jfrog_pipelines
+      gitProvider: deepikaGithub
+      branches:
+        include: ^{{gitBranch}}$
   - name: propertyBag
     type: PropertyBag
     configuration:
@@ -37,3 +44,14 @@ pipelines:
             - echo "Executing demoBash_monorepo"
             - printenv
             - echo "missing commit"
+      - name: demoBash_monorepo_2
+        type: Bash
+        configuration:
+          inputResources:
+            - name: newRepo
+          inputSteps:
+            - name: demoBash_monorepo
+        execution:
+          onExecute:
+            - echo "Executing demoBash_monorepo"
+            
