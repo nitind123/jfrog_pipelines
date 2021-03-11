@@ -31,7 +31,7 @@ pipelines:
         configuration:
           inputResources:
             - name: myRepo
-            - name: propertyBag
+#             - name: propertyBag
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
