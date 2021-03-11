@@ -54,5 +54,5 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
-            - echo "test"
+            - echo "test123"
             
