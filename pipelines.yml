@@ -13,6 +13,13 @@ resources:
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
+  - name: script_1
+    type: GitRepo
+    configuration:
+      path: deepikasl/sample-script
+      gitProvider: deepikaGithub
+      branches:
+        include: test
   - name: propertyBag
     type: PropertyBag
     configuration:
@@ -32,13 +39,24 @@ pipelines:
           onExecute:
             - write_output propertyBag "foo=$run_number"
   - name: demo_monorepo
-    steps:    
+    steps: 
+      - name: demoBash_main
+        type: Bash
+        configuration:
+          inputResources:
+            - name: script_1
+#             - name: propertyBag
+        execution:
+          onExecute:
+            - echo "Executing demoBash_main"
       - name: demoBash_monorepo
         type: Bash
         configuration:
           inputResources:
             - name: myRepo
 #             - name: propertyBag
+          inputSteps:
+            - name: demoBash_main
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
