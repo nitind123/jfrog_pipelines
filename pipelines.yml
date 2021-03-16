@@ -74,8 +74,6 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
-            - echo "test123"
-            - echo "testing"
 #       - name: demoBash_monorepo_3
 #         type: Bash
 #         configuration:
