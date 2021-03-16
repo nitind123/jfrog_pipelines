@@ -49,8 +49,6 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing demoBash_main"
-            - echo "here123"
-            - echo "here lalala test"
       - name: demoBash_monorepo
         type: Bash
         configuration:
