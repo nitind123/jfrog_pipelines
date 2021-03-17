@@ -71,13 +71,13 @@ pipelines:
           onExecute:
             - echo "Executing demoBash_monorepo"
             - echo "test"
-#       - name: demoBash_monorepo_3_test
-#         type: Bash
-#         configuration:
-#           inputSteps:
-#             - name: demoBash_monorepo_2
-#         execution:
-#           onExecute:
-#             - echo "Executing demoBash_monorepo_2_test"
+      - name: demoBash_monorepo_3_test
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: demoBash_monorepo_2
+        execution:
+          onExecute:
+            - echo "Executing demoBash_monorepo_2_test"
             
             
