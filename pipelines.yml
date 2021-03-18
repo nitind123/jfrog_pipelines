@@ -66,6 +66,7 @@ pipelines:
         configuration:
           inputResources:
             - name: newRepo
+            - name: myRepo
           inputSteps:
             - name: demoBash_monorepo
         execution:
