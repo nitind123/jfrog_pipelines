@@ -20,6 +20,17 @@ resources:
       gitProvider: deepikaGithub
       branches:
         include: test
+      files:
+        include: echo.sh
+  - name: script_2
+    type: GitRepo
+    configuration:
+      path: deepikasl/sample-script
+      gitProvider: deepikaGithub
+      branches:
+        include: test
+      files:
+        include: node.sh
   - name: propertyBag
     type: PropertyBag
     configuration:
@@ -33,6 +44,8 @@ pipelines:
       - name: manual_trigger
         type: Bash
         configuration:
+          inputResources:
+            - name: script_2
           outputResources:
             - name: propertyBag
         execution:
