@@ -19,7 +19,7 @@ resources:
       path: deepikasl/sample-script
       gitProvider: deepikaGithub
       branches:
-        include: test
+        include: ^{{gitBranch}}$
       files:
         include: echo.sh
   - name: script_2
@@ -28,7 +28,7 @@ resources:
       path: deepikasl/sample-script
       gitProvider: deepikaGithub
       branches:
-        include: test
+        include: ^{{gitBranch}}$
       files:
         include: node.sh
   - name: propertyBag
