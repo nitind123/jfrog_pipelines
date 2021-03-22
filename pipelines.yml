@@ -85,7 +85,6 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
-            - echo "testing12345"
 #       - name: demoBash_monorepo_3_test
 #         type: Bash
 #         configuration:
