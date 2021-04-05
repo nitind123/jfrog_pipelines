@@ -67,7 +67,7 @@ pipelines:
         configuration:
           inputResources:
             - name: myRepo
-#               trigger: false
+              trigger: false
 #             - name: propertyBag
           inputSteps:
             - name: demoBash_main
