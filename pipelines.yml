@@ -24,17 +24,17 @@ pipelines:
             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:11
             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:8
             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:14
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:13	
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:11
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:8
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.15.2
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.14.4
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.13.12
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.12.17
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.11.13
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:10.0.0
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:9.0.0
-            - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:8.0.0
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:13	
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:11
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:8
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.15.2
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.14.4
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.13.12
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.12.17
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.11.13
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:10.0.0
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:9.0.0
+#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:8.0.0
             - docker images        
             - df -h
             - echo "Executing testBash_aws step"
