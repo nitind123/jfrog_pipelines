@@ -11,7 +11,7 @@ pipelines:
       - name: testBash_aws
         type: Bash
         configuration:
-          nodePool: deepika_aws_dynamic
+          nodePool: aws
           inputResources:
             - name: gitRepo_aws
         execution:
