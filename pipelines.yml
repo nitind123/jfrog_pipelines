@@ -37,4 +37,7 @@ pipelines:
             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:8.0.0
             - docker images        
             - df -h
+            - fallocate -l 10G huge_file.dat
+            - df -h
+            - fallocate -l 2G huge_file.dat1
             - echo "Executing testBash_aws step"
