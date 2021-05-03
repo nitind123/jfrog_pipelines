@@ -19,6 +19,7 @@ pipelines:
           onExecute:
             - echo "Executing demoBash"
             - printenv
+            - blah
      
       - name: demoBash_conditional_B
         type: Bash
