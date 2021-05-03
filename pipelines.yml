@@ -51,5 +51,9 @@ pipelines:
             - fallocate -l 10G huge_file.dat1
             - df -h
             - fallocate -l 7G huge_file.dat1
+            - fallocate -l 10G huge_file.dat1
+            - fallocate -l 10G huge_file.dat1
+            - fallocate -l 10G huge_file.dat1
+            - fallocate -l 10G huge_file.dat1
             - df -h
             - echo "Executing testBash_aws step"
