@@ -1,5 +1,5 @@
 resources:
-  - name: script_1
+  - name: script_conditional
     type: GitRepo
     configuration:
       path: deepikasl/sample-script
@@ -8,15 +8,27 @@ resources:
         include: ^{{gitBranch}}$
 
 pipelines:
-  - name: demo_triggeredBy
+  - name: demo_conditional
     steps:
-      - name: demoBash
+      - name: demoBash_conditional_A
         type: Bash
         configuration:
           inputResources:
-            - name: script_1
+            - name: script_conditional
         execution:
           onExecute:
             - echo "Executing demoBash"
+            - printenv
+     
+      - name: demoBash_conditional_B
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: demoBash_conditional_A
+              status:
+                - failure
+        execution:
+          onExecute:
+            - echo "Executing demoBash_conditional_B"
             - printenv
             
