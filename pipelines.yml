@@ -13,7 +13,7 @@ pipelines:
         configuration:
           nodePool: deepika_aws_dynamic
           inputResources:
-            - name: gitRepo_aws
+            - name: gitRepo_aws_dev
         execution:
           onExecute:
             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:8
