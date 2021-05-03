@@ -1,17 +1,17 @@
 resources:
-  - name: gitRepo_aws
+  - name: gitRepo_aws_dev
     type: GitRepo
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
 
 pipelines:
-  - name: aws_bash_pipeline
+  - name: aws_bash_pipeline_dev
     steps:
-      - name: testBash_aws
+      - name: testBash_aws_dev
         type: Bash
         configuration:
-          nodePool: aws
+          nodePool: deepika_aws_dynamic
           inputResources:
             - name: gitRepo_aws
         execution:
@@ -39,6 +39,6 @@ pipelines:
             - df -h
             - fallocate -l 10G huge_file.dat
             - df -h
-            - fallocate -l 7G huge_file.dat1
+            - fallocate -l 15G huge_file.dat1
             - df -h
             - echo "Executing testBash_aws step"
