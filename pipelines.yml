@@ -8,9 +8,9 @@ resources:
         include: ^{{gitBranch}}$
 
 pipelines:
-  - name: demo_conditional
+  - name: simple_demo
     steps:
-      - name: demoBash_conditional_A
+      - name: simple_conditional_A
         type: Bash
         configuration:
           inputResources:
@@ -19,17 +19,62 @@ pipelines:
           onExecute:
             - echo "Executing demoBash"
             - printenv
-#             - blah
      
-      - name: demoBash_conditional_B
+      - name: simple_conditional_B
         type: Bash
         configuration:
           inputSteps:
-            - name: demoBash_conditional_A
+            - name: simple_conditional_A
               status:
                 - failure
         execution:
           onExecute:
-            - echo "Executing demoBash_conditional_B"
+            - echo "Executing simple_conditional_B"
+            - printenv
+  - name: demo_conditional
+    steps:
+      - name: step_A
+        type: Bash
+        configuration:
+          inputResources:
+            - name: script_conditional
+        execution:
+          onExecute:
+            - echo "Executing step_A"
+            - printenv
+     
+      - name: step_B
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_A
+        execution:
+          onExecute:
+            - echo "Executing step_B"
+            - printenv
+      - name: step_C
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_A
+        execution:
+          onExecute:
+            - echo "Executing step_B"
+            - printenv
+      - name: conditional_D
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_B
+              status:
+                - success
+            - name: step_C
+              status:
+                - failure
+                - skip
+                - cancelled
+        execution:
+          onExecute:
+            - echo "Executing step_B"
             - printenv
             
