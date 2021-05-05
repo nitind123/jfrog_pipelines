@@ -24,7 +24,8 @@ pipelines:
         configuration:
           inputSteps:
             - name: jenkins
-              status: success
+              status:
+                - success
         execution:
           onExecute:
             - echo "Executing step_A"
