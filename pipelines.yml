@@ -30,7 +30,7 @@ pipelines:
             - printenv
       - name: step_CC
         type: Bash
-        configuration:
+#         configuration:
         execution:
           onExecute:
             - echo "Executing step_CC"
