@@ -92,7 +92,7 @@ pipelines:
             - name: step_C
               status:
                 - failure
-                - skip
+                - skipped
                 - cancelled
         execution:
           onExecute:
