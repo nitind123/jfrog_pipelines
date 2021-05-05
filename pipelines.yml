@@ -8,6 +8,37 @@ resources:
         include: ^{{gitBranch}}$
 
 pipelines:
+  - name: sample_test_jenkins
+    steps:
+      - name: bash
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Executing step_A"
+            - blah
+            - printenv
+      - name: jenkins_test
+        type: Jenkins
+        configuration:
+          inputSteps:
+            - name: bash
+              status:
+                - success
+          jenkinsJobName: testPipeline
+          integrations:
+            - name: deepikaJenkins
+      
+      - name: step_A
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: jenkins
+              status:
+                - success
+        execution:
+          onExecute:
+            - echo "Executing step_A"
+            - printenv
   - name: simple_jenkins_demo
     steps:
       - name: jenkins
