@@ -46,7 +46,7 @@ pipelines:
             - name: step_CC
               status:
                 - failure
-                - skip
+                - skipped
                 - cancelled
         execution:
           onExecute:
