@@ -23,7 +23,7 @@ pipelines:
           inputSteps:
             - name: bash
               status:
-                - success
+                - failure
           jenkinsJobName: testPipeline
           integrations:
             - name: deepikaJenkins
