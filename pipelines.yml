@@ -88,7 +88,7 @@ pipelines:
             - echo "here"
             - echo "hi"
             - echo "hah"
-#             - echo "hello"
+            - echo "hello"
 #       - name: demoBash_monorepo_3_test
 #         type: Bash
 #         configuration:
