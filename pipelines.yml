@@ -11,7 +11,7 @@ pipelines:
       - name: testBash_aws
         type: Bash
         configuration:
-#           nodePool: aws
+          nodePool: aws
           inputResources:
             - name: gitRepo_aws
         execution:
