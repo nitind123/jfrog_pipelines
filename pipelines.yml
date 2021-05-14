@@ -87,6 +87,7 @@ pipelines:
             - echo "Executing demoBash_monorepo"
             - echo "here"
             - echo "hi"
+            - echo "hah"
 #             - echo "hello"
 #       - name: demoBash_monorepo_3_test
 #         type: Bash
