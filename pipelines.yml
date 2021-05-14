@@ -1,4 +1,4 @@
-# resources:
+resources:
 # #   - name: test
 # #     type: shippable/GitRepo
 # #     syntaxVersion: 1.0.0
@@ -211,7 +211,7 @@
 #             - echo "Executing stepB_5.."
             
             
-            resources:
+#             resources:
   - name: myRepo
     type: GITRepo
     configuration:
