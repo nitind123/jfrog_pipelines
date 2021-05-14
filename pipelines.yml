@@ -1,212 +1,317 @@
-resources:
-#   - name: test
-#     type: shippable/GitRepo
-#     syntaxVersion: 1.0.0
-#     configuration:
-#       name: test
+# resources:
+# #   - name: test
+# #     type: shippable/GitRepo
+# #     syntaxVersion: 1.0.0
+# #     configuration:
+# #       name: test
 
-#   - name: test1
-#     type: shippable/GitRepo
-#     syntaxVersion: 1.0.1
+# #   - name: test1
+# #     type: shippable/GitRepo
+# #     syntaxVersion: 1.0.1
+# #     configuration:
+# #       name: test
+# #   - name: shippablefoo
+# #     type: shippable/foo
+# #     syntaxVersion: latest
+# #     configuration:
+# #       name: test
+# #   - name: foo
+# #     type: foo
+# #     syntaxVersion: latest
+# #     configuration:
+# #       name: test
+# #   - name: foofoo
+# #     type: foo/foo
+# #     syntaxVersion: latest
+# #     configuration:
+# #       name: test
+# #   - name: DockerPsh
+# #     type: DockerPsh
+# #     syntaxVersion: latest
+# #     configuration:
+# #       name: test
+#   - name: gitRepo
+#     type: GitRepo
 #     configuration:
-#       name: test
-#   - name: shippablefoo
-#     type: shippable/foo
-#     syntaxVersion: latest
+#       path: deepikasl/jfrog_pipelines
+#       gitProvider: deepikaGithub
+#   - name: script
+#     type: GitRepo
 #     configuration:
-#       name: test
-#   - name: foo
-#     type: foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: foofoo
-#     type: foo/foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: DockerPsh
-#     type: DockerPsh
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-  - name: gitRepo
+#       path: deepikasl/sample-script
+#       gitProvider: deepikaGithub
+
+# pipelines:
+#   - name: test_stepTestReports
+#     steps:
+#       - name: testReport
+#         type: Bash
+#         configuration:
+#           inputResources:
+#             - name: script
+#         execution:
+#           onExecute:
+#             - echo "testing webhook"
+#             - cd $res_script_resourcePath
+#             - ls
+#             - python -m py_compile calc.py
+#             - pip install --upgrade pip
+#             - hash -d pip
+#             - pip install pytest           
+#             - py.test --verbose --junit-xml test-reports/results.xml test_calc.py
+#           onComplete:
+#             - save_tests $res_script_resourcePath/test-reports/results.xml
+#   - name: bash_pipeline
+#     steps:
+# #       - name: sampleStep
+# #         type: shippable/sampleStep
+# #         syntaxVersion: 1.11.1
+# #         configuration:
+# #           inputSteps:
+# #             - name: testBash
+# # #         execution:
+# # #           onExecute:
+# # #             - echo "Executing testBash.."
+#       - name: testBash
+#         type: Bash
+#         configuration:
+#           environmentVariables:
+#             image_tag: latest
+# #           nodePool: u16-dynamic
+# #           runtime:            
+# #             type: image
+# #             image:
+# #               custom:
+# #                 registry: dockerRegistry
+# #                 name: shippabledocker/jfreq
+# #                 tag: $image_tag
+# #                 autoPull: true
+#           inputResources:
+#             - name: gitRepo
+            
+# #           runtime:            
+# #             type: image
+# #             image:
+# #               auto:
+# #                 language: node
+# #                 versions:
+# #                   - "12.14.0"
+#         execution:
+#           onExecute:
+# #             - printenv
+#             - df -h
+# #             - docker images     
+# #             - df -h
+# #             - fallocate -l 10G huge_file.dat
+# #             - df -h
+# #             - fallocate -l 10G huge_file.dat1
+# #             - df -h
+# #             - fallocate -l 10G huge_file.dat2
+# #             - fallocate -l 10G huge_file.dat13
+# #             - df -h
+# #             - fallocate -l 1G huge_file.dat3
+# #             - df -h
+# #             - fallocate -l 5G huge_file.dat4
+# #             - df -h
+# #             - fallocate -l 1G huge_file.dat5
+# #             - fallocate -l 5G huge_file.dat11
+# #             - df -h
+# #             - fallocate -l 1G huge_file.dat12
+# #             - df -h
+# #             - fallocate -l 1G huge_file.dat6
+# #             - fallocate -l 1G huge_file.dat7
+# #             - df -h
+# #             - fallocate -l 1G huge_file.dat8
+# #             - df -h
+# #             - fallocate -l 1G huge_file.dat9
+#             - echo $"step_image_tag='$image_tag'"
+#             - echo $artifactoryRegistry_url
+#             - echo $image_tag
+#             - echo "Executing testBash.."
+#             - restore_cache_files pipeline_state_cache cache.txt
+#             - add_pipeline_variables pipelineId=$pipeline_id
+#             - add_run_variables runId=$run_number	
+#             - echo "state=$run_number" > cache.txt
+#             - add_cache_files cache.txt pipeline_state_cache
+#             - echo "state=$run_number" > pipeline_state.txt
+#             - add_pipeline_files pipeline_state.txt pipeline_state_file
+#             - echo "state=$run_number" > run_state.txt
+#             - add_run_files run_state.txt run_state_file
+#       - name: restoreBash
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: testBash
+# #           runtime:            
+# #             type: image
+# #             image:
+# #               custom:
+# #                 name: shippabledocker/jfreq
+# #                 tag: latest
+#         execution:
+#           onExecute:
+#             - echo "Executing restoreBash.."
+#             - restore_pipeline_files pipeline_state_file pipeline_state.txt
+#             - restore_run_files run_state_file run_state.txt
+#       - name: stepA_1
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: testBash
+#         execution:
+#           onExecute:
+#             - echo "Executing stepA_1.."
+#       - name: stepA_2
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: stepA_1
+#         execution:
+#           onExecute:
+#             - echo "Executing stepA_2.."
+#       - name: stepB_1
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: restoreBash
+#         execution:
+#           onExecute:
+#             - echo "Executing stepB_1.."
+#       - name: stepB_2
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: stepB_1
+#         execution:
+#           onExecute:
+#             - echo "Executing stepB_2.."
+#       - name: stepB_3
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: stepB_2
+#         execution:
+#           onExecute:
+#             - echo "Executing stepB_3.."
+#       - name: stepB_4
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: stepB_3
+#         execution:
+#           onExecute:
+#             - echo "Executing stepB_4.."
+#       - name: stepB_5
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: stepB_4
+#         execution:
+#           onExecute:
+#             - echo "Executing stepB_5.."
+            
+            
+            resources:
+  - name: myRepo
+    type: GITRepo
+    configuration:
+      path: deepikasl/jfrog_pipelines
+      gitProvider: deepikaGithub
+      branches:
+        include: ^{{gitBranch}}$
+  - name: newRepo
     type: GitRepo
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
-  - name: script
+      branches:
+        include: ^{{gitBranch}}$
+  - name: script_1
     type: GitRepo
     configuration:
       path: deepikasl/sample-script
       gitProvider: deepikaGithub
+      branches:
+        include: ^{{gitBranch}}$
+      files:
+        include: echo.sh
+  - name: script_2
+    type: GitRepo
+    configuration:
+      path: deepikasl/sample-script
+      gitProvider: deepikaGithub
+      branches:
+        include: ^{{gitBranch}}$
+      files:
+        include: node.sh
+  - name: propertyBag
+    type: PropertyBag
+    configuration:
+      foo: bar
+      foo1: bar1
+      foo2: bar2
 
 pipelines:
-  - name: test_stepTestReports
+  - name: demo_manual
     steps:
-      - name: testReport
+      - name: manual_trigger
         type: Bash
         configuration:
           inputResources:
-            - name: script
+            - name: script_2
+          outputResources:
+            - name: propertyBag
         execution:
           onExecute:
-            - echo "testing webhook"
-            - cd $res_script_resourcePath
-            - ls
-            - python -m py_compile calc.py
-            - pip install --upgrade pip
-            - hash -d pip
-            - pip install pytest           
-            - py.test --verbose --junit-xml test-reports/results.xml test_calc.py
-          onComplete:
-            - save_tests $res_script_resourcePath/test-reports/results.xml
-  - name: bash_pipeline
-    steps:
-#       - name: sampleStep
-#         type: shippable/sampleStep
-#         syntaxVersion: 1.11.1
+            - write_output propertyBag "foo=$run_number"
+  - name: demo_monorepo
+    steps: 
+      - name: demoBash_main
+        type: Bash
+        configuration:
+          inputResources:
+            - name: script_1
+#             - name: propertyBag
+        execution:
+          onExecute:
+            - echo "Executing demoBash_main"
+      - name: demoBash_monorepo
+        type: Bash
+        configuration:
+          inputResources:
+            - name: myRepo
+              trigger: false
+#             - name: propertyBag
+          inputSteps:
+            - name: demoBash_main
+        execution:
+          onExecute:
+            - echo "Executing demoBash_monorepo"
+      - name: demoBash_monorepo_2
+        type: Bash
+        configuration:
+          inputResources:
+            - name: newRepo
+#             - name: myRepo
+          inputSteps:
+            - name: demoBash_monorepo
+        execution:
+          onExecute:
+            - echo "Executing demoBash_monorepo"
+            - echo "here"
+            - echo "hi"
+            - echo "hah"
+            - echo "hello"
+            - echo "lala"
+            
+#       - name: demoBash_monorepo_3_test
+#         type: Bash
 #         configuration:
 #           inputSteps:
-#             - name: testBash
-# #         execution:
-# #           onExecute:
-# #             - echo "Executing testBash.."
-      - name: testBash
-        type: Bash
-        configuration:
-          environmentVariables:
-            image_tag: latest
-#           nodePool: u16-dynamic
-#           runtime:            
-#             type: image
-#             image:
-#               custom:
-#                 registry: dockerRegistry
-#                 name: shippabledocker/jfreq
-#                 tag: $image_tag
-#                 autoPull: true
-          inputResources:
-            - name: gitRepo
+#             - name: demoBash_monorepo_2
+#         execution:
+#           onExecute:
+#             - echo "Executing demoBash_monorepo_2_test"
             
-#           runtime:            
-#             type: image
-#             image:
-#               auto:
-#                 language: node
-#                 versions:
-#                   - "12.14.0"
-        execution:
-          onExecute:
-#             - printenv
-            - df -h
-#             - docker images     
-#             - df -h
-#             - fallocate -l 10G huge_file.dat
-#             - df -h
-#             - fallocate -l 10G huge_file.dat1
-#             - df -h
-#             - fallocate -l 10G huge_file.dat2
-#             - fallocate -l 10G huge_file.dat13
-#             - df -h
-#             - fallocate -l 1G huge_file.dat3
-#             - df -h
-#             - fallocate -l 5G huge_file.dat4
-#             - df -h
-#             - fallocate -l 1G huge_file.dat5
-#             - fallocate -l 5G huge_file.dat11
-#             - df -h
-#             - fallocate -l 1G huge_file.dat12
-#             - df -h
-#             - fallocate -l 1G huge_file.dat6
-#             - fallocate -l 1G huge_file.dat7
-#             - df -h
-#             - fallocate -l 1G huge_file.dat8
-#             - df -h
-#             - fallocate -l 1G huge_file.dat9
-            - echo $"step_image_tag='$image_tag'"
-            - echo $artifactoryRegistry_url
-            - echo $image_tag
-            - echo "Executing testBash.."
-            - restore_cache_files pipeline_state_cache cache.txt
-            - add_pipeline_variables pipelineId=$pipeline_id
-            - add_run_variables runId=$run_number	
-            - echo "state=$run_number" > cache.txt
-            - add_cache_files cache.txt pipeline_state_cache
-            - echo "state=$run_number" > pipeline_state.txt
-            - add_pipeline_files pipeline_state.txt pipeline_state_file
-            - echo "state=$run_number" > run_state.txt
-            - add_run_files run_state.txt run_state_file
-      - name: restoreBash
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: testBash
-#           runtime:            
-#             type: image
-#             image:
-#               custom:
-#                 name: shippabledocker/jfreq
-#                 tag: latest
-        execution:
-          onExecute:
-            - echo "Executing restoreBash.."
-            - restore_pipeline_files pipeline_state_file pipeline_state.txt
-            - restore_run_files run_state_file run_state.txt
-      - name: stepA_1
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: testBash
-        execution:
-          onExecute:
-            - echo "Executing stepA_1.."
-      - name: stepA_2
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: stepA_1
-        execution:
-          onExecute:
-            - echo "Executing stepA_2.."
-      - name: stepB_1
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: restoreBash
-        execution:
-          onExecute:
-            - echo "Executing stepB_1.."
-      - name: stepB_2
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: stepB_1
-        execution:
-          onExecute:
-            - echo "Executing stepB_2.."
-      - name: stepB_3
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: stepB_2
-        execution:
-          onExecute:
-            - echo "Executing stepB_3.."
-      - name: stepB_4
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: stepB_3
-        execution:
-          onExecute:
-            - echo "Executing stepB_4.."
-      - name: stepB_5
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: stepB_4
-        execution:
-          onExecute:
-            - echo "Executing stepB_5.."
             
+
