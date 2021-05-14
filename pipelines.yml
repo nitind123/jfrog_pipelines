@@ -1,6 +1,6 @@
 resources:
   - name: myRepo
-    type: GitRepo
+    type: GITRepo
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
