@@ -24,6 +24,8 @@ pipelines:
         configuration:
           inputSteps:
             - name: step_AA
+              status:
+                - success
         execution:
           onExecute:
             - echo "Executing step_B"
