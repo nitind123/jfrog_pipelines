@@ -1,19 +1,19 @@
 resources:
-  - name: myRepo
+  - name: myRepo_test
     type: GITRepo
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
-  - name: newRepo
+  - name: newRepo_test
     type: GitRepo
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
-  - name: script_1
+  - name: script_1_test
     type: GitRepo
     configuration:
       path: deepikasl/sample-script
@@ -22,7 +22,7 @@ resources:
         include: ^{{gitBranch}}$
       files:
         include: echo.sh
-  - name: script_2
+  - name: script_2_test
     type: GitRepo
     configuration:
       path: deepikasl/sample-script
@@ -31,7 +31,7 @@ resources:
         include: ^{{gitBranch}}$
       files:
         include: node.sh
-  - name: propertyBag
+  - name: propertyBag_test
     type: PropertyBag
     configuration:
       foo: bar
@@ -45,7 +45,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: script_2
+            - name: script_2_test
           outputResources:
             - name: propertyBag
         execution:
@@ -57,7 +57,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: script_1
+            - name: script_1_test
 #             - name: propertyBag
         execution:
           onExecute:
@@ -66,7 +66,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: myRepo
+            - name: myRepo_test
               trigger: false
 #             - name: propertyBag
           inputSteps:
@@ -78,7 +78,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: newRepo
+            - name: newRepo_test
 #             - name: myRepo
           inputSteps:
             - name: demoBash_monorepo
