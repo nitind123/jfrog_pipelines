@@ -85,11 +85,6 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
-            - echo "here"
-            - echo "hi"
-            - echo "hah"
-            - echo "hello"
-            - echo "lala"
             
             
 #       - name: demoBash_monorepo_3_test
