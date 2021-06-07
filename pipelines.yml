@@ -62,6 +62,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing demoBash_main"
+            - sleep 60
       - name: demoBash_monorepo
         type: Bash
         configuration:
