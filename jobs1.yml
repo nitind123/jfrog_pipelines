@@ -12,6 +12,7 @@ pipelines:
             - add_run_variables run="$run_number lol"
             - touch foo
             - add_run_files foo foo
+            - add_pipeline_files foo foo
       - name: two
         type: Bash
         configuration:
