@@ -1,19 +1,25 @@
-resources:
-  - name: deeps_github
-    type: GitRepo
-    configuration:
-      path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
- 
 pipelines:
-  - name: deeps_pipeline
-    steps:          
-      - name: deeps_bash
+  - name: basic_state
+    steps:
+      - name: one
         type: Bash
         configuration:
-          inputResources:
-            - name: deeps_github
+          runtime:
+            type: host
         execution:
           onExecute:
-            - echo "executing bash step..."
-  
+            - add_pipeline_variables run=$run_number
+            - add_run_variables run="$run_number lol"
+            - touch foo
+            - add_run_files foo foo
+      - name: two
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: one
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - restore_run_files foo foo
+            - printenv
