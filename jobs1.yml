@@ -4,6 +4,11 @@ pipelines:
       - name: one
         type: Bash
         configuration:
+          environmentVariables:
+            JFROG_CLI_BUILD_NAME: "pipelines-api"
+            JFROG_CLI_BUILD_NUMBER: "${run_id}"
+          integrations:
+            - name: art
           runtime:
             type: host
         execution:
@@ -13,6 +18,8 @@ pipelines:
             - touch foo
             - add_run_files foo foo
             - add_pipeline_files foo foo
+            - jfrog rt build-collect-env ${JFROG_CLI_BUILD_NAME} ${JFROG_CLI_BUILD_NUMBER}
+            - jfrog rt build-publish ${JFROG_CLI_BUILD_NAME} ${JFROG_CLI_BUILD_NUMBER}
       - name: two
         type: Bash
         configuration:
