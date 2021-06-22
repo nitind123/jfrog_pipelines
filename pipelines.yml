@@ -46,6 +46,7 @@ pipelines:
         configuration:
           inputResources:
             - name: script_2
+              trigger: false
           outputResources:
             - name: propertyBag
         execution:
