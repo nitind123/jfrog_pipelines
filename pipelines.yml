@@ -45,11 +45,14 @@ pipelines:
           inputSteps:
             - name: jenkins
               status:
-                - success
+                - failure
+                - error
+                - timeout
         execution:
           onExecute:
             - echo "Executing step_A"
-            - if [ $step_jenkins_statusName == "success" ]; then  echo "Do something"; fi
+            - if [ $step_jenkins_statusName == "failure" ]; then  echo "Do something"; fi
+            - if [ $step_jenkins_statusName == "error" ]; then  echo "Do something else"; fi
      
       - name: simple_conditional_B
         type: Bash
