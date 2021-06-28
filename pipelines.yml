@@ -49,7 +49,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing step_A"
-            - printenv
+            - if [ $step_jenkins_statusName == "success" ]; then  echo "Do something"; fi
      
       - name: simple_conditional_B
         type: Bash
