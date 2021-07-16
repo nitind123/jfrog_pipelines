@@ -1,0 +1,18 @@
+pipelines:
+  - name: sample_pipeline_version
+    configuration:
+      environmentVariables:
+        readOnly:
+          fooVersion: 0.0.0
+    steps:
+      - name: step_1_version
+        type: Bash
+        execution:
+         - echo "$fooVersion"
+      - name: step_2_version
+        type: Bash
+        configuration:
+            inputSteps:
+              - name: step_1_version
+        execution:
+         - echo "$fooVersion"
