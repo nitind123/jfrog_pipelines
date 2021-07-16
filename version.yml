@@ -8,11 +8,11 @@ pipelines:
       - name: step_1_version
         type: Bash
         execution:
-         - echo "$fooVersion"
+          - echo "$fooVersion"
       - name: step_2_version
         type: Bash
         configuration:
             inputSteps:
               - name: step_1_version
         execution:
-         - echo "$fooVersion"
+          - echo "$fooVersion"
