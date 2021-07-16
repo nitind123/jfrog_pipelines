@@ -4,10 +4,12 @@ pipelines:
       environmentVariables:
         readOnly:
           fooVersion: 0.0.0
-        booVersion: 0.0.0
     steps:
       - name: step_1_version
         type: Bash
+        configuration:
+          environmentVariables:
+            booVersion: 0.0.0
         execution:
           onExecute:
             - echo "$fooVersion"
