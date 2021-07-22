@@ -1,8 +1,8 @@
 resources:
-  - name: script_1
+  - name: script_1_2
     type: GitRepo
     configuration:
-      path: deepikasl/sample-script
+      path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
