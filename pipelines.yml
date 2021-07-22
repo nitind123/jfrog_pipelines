@@ -18,19 +18,11 @@ resources:
     configuration:
       path: deepikasl/sample-script
       gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-      files:
-        include: echo.sh
   - name: script_2
     type: GitRepo
     configuration:
       path: deepikasl/sample-script
       gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-      files:
-        include: node.sh
   - name: propertyBag
     type: PropertyBag
     configuration:
