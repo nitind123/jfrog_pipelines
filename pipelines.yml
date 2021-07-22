@@ -19,4 +19,5 @@ pipelines:
           onExecute:
             - echo "Executing demoBash"
             - printenv
+            - echo "hi"
             
