@@ -14,7 +14,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: script_1
+            - name: script_1_2
         execution:
           onExecute:
             - echo "Executing demoBash"
