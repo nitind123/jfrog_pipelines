@@ -51,6 +51,7 @@ pipelines:
         execution:
           onExecute:
             - write_output propertyBag "foo=$run_number"
+            - printenv
   - name: demo_monorepo
     steps: 
       - name: demoBash_main
