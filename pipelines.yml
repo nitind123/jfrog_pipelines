@@ -58,6 +58,7 @@ pipelines:
       - name: demoBash_monorepo
         type: Bash
         configuration:
+          nodePool: deepikaTestNP
           inputResources:
             - name: myRepo
               trigger: false
