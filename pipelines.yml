@@ -1,5 +1,5 @@
 resources:
-  - name: myRepo
+  - name: myRepo_d
     type: GITRepo
     configuration:
       path: deepikasl/jfrog_pipelines
@@ -60,7 +60,7 @@ pipelines:
         configuration:
 #           nodePool: deepikaTestNP
           inputResources:
-            - name: myRepo
+            - name: myRepo_d
               trigger: false
 #             - name: propertyBag
           inputSteps:
