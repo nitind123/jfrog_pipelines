@@ -1,61 +1,29 @@
 resources:
-  - name: gitRepo_aws
+  - name: gitRepo_matrix
     type: GitRepo
     configuration:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
 
 pipelines:
-  - name: aws_bash_pipeline
+  - name: maatrix_bash_pipeline
     steps:
-      - name: testBash_aws
+      - name: testBash_matrix
         type: Bash
         configuration:
-          nodePool: aws
           inputResources:
             - name: gitRepo_aws
+        stepletMultipliers:
+          environmentVariables:             # Sets of environment variables for steplets
+            - animal:    dog                # - Set 1
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat               # - Set 2
+              mineral:   iron
+              vegetable: broccoli
         execution:
           onExecute:
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:8
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:10
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18node:12
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:14
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:13
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:11
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18java:8
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:14
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:13	
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:11
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u16java:8
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.15.2
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.14.4
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.13.12
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.12.17
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18go:1.11.13
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:10.0.0
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:9.0.0
-#             - docker pull releases-docker.jfrog.io/jfrog/pipelines-u18cpp:8.0.0
             - docker images        
             - df -h
-            - fallocate -l 10G huge_file.dat
-            - fallocate -l 10G huge_file.dat
-            - fallocate -l 10G huge_file.dat
-            - fallocate -l 10G huge_file.dat
-            - fallocate -l 10G huge_file.dat
-            - df -h
-            - fallocate -l 10G huge_file.dat
-            - df -h
-            - fallocate -l 7G huge_file.dat1
-            - df -h
-            - fallocate -l 10G huge_file.dat1
-            - fallocate -l 10G huge_file.dat1
-            - df -h
-            - fallocate -l 7G huge_file.dat1
-            - fallocate -l 10G huge_file.dat1
-            - fallocate -l 10G huge_file.dat1
-            - fallocate -l 10G huge_file.dat1
-            - fallocate -l 10G huge_file.dat1
-            - fallocate -l 10G huge_file.dat2
-            - fallocate -l 10G huge_file.dat3
-            - df -h
+            - printenv
             - echo "Executing testBash_aws step"
