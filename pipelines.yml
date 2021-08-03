@@ -9,7 +9,7 @@ pipelines:
   - name: maatrix_bash_pipeline
     steps:
       - name: testBash_matrix
-        type: Bash
+        type: Matrix
         configuration:
           inputResources:
             - name: gitRepo_aws
