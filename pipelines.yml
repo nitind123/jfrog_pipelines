@@ -78,7 +78,7 @@ pipelines:
             - name: demoBash_monorepo
         execution:
           onExecute:
-            - echo "Executing demoBash_monorepo test"
+            - echo "Executing demoBash_monorepo"
             
             
 #       - name: demoBash_monorepo_3_test
