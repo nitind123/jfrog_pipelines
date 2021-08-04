@@ -26,4 +26,4 @@ pipelines:
             - docker images        
             - df -h
             - printenv
-            - echo "Executing testBash_aws step"
+            - echo "Executing testBash_matrix step"
