@@ -69,6 +69,7 @@ pipelines:
         execution:
           onExecute:
             - echo "Executing demoBash_monorepo"
+            - printenv
       - name: demoBash_monorepo_2
         type: Bash
         configuration:
