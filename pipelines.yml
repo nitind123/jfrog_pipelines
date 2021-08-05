@@ -70,6 +70,12 @@ pipelines:
           onExecute:
             - echo "Executing demoBash_monorepo"
             - printenv
+            - |
+              if [ -z "$step_demoBash_main_statusName" ];
+              then
+                 echo "env step_demoBash_main_statusName is not present"
+                 exit 1
+              fi
       - name: demoBash_monorepo_2
         type: Bash
         configuration:
