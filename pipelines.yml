@@ -6,6 +6,13 @@ resources:
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
+  - name: myRepo_test
+    type: GITRepo
+    configuration:
+      path: deepikasl/jfrog_pipeline
+      gitProvider: deepikaGithub1
+      branches:
+        include: ^{{gitBranch}}$
   - name: newRepo
     type: GitRepo
     configuration:
