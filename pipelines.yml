@@ -9,7 +9,7 @@ resources:
   - name: myRepo_test
     type: GITRepo
     configuration:
-      path: deepikasl/jfrog_pipeline
+      path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub1
       branches:
         include: ^{{gitBranch}}$
