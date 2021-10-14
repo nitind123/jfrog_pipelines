@@ -73,7 +73,7 @@ pipelines:
             - name: demoBash_main
         execution:
           onExecute:
-            - echo "Executing demoBash_monorep o"
+            - echo "Executing demoBash_monorepo"
       - name: demoBash_monorepo_2
         type: Bash
         configuration:
