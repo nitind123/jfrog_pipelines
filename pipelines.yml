@@ -297,7 +297,7 @@ pipelines:
             - name: demoBash_monorepo
         execution:
           onExecute:
-            - echo "Executing demoBash_monorepo"
+            - echo "Executing demoBash_monorepo testing123"
             
 #       - name: demoBash_monorepo_3_test
 #         type: Bash
