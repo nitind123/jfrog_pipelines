@@ -1,5 +1,5 @@
 resources:
-  - name: script_conditional
+  - name: newVersion_conditional
     type: GitRepo
     configuration:
       path: deepikasl/sample-script
@@ -8,31 +8,21 @@ resources:
         include: ^{{gitBranch}}$
 
 pipelines:
-  - name: demo_run
+  - name: new_demo_run
     steps:
       - name: step_AA
         type: Bash
         configuration:
           inputResources:
-            - name: script_conditional
+            - name: newVersion_conditional
+              newVersionOnly: true
         execution:
           onExecute:
-            - echo "Executing step_B"
+            - echo "Executing step_AA"
             - printenv
-      - name: step_BB
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step_AA
-              status:
-                - success
-        execution:
-          onExecute:
-            - echo "Executing step_B"
-            - printenv
+
       - name: step_CC
         type: Bash
-#         configuration:
         execution:
           onExecute:
             - echo "Executing step_CC"
@@ -42,10 +32,10 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - name: step_BB
+            - name: step_CC
               status:
                 - success
-            - name: step_CC
+            - name: step_AA
               status:
                 - failure
                 - skipped
@@ -54,50 +44,4 @@ pipelines:
           onExecute:
             - echo "Executing conditional_DD"
             - printenv
-  - name: demo_conditional
-    steps:
-      - name: step_A
-        type: Bash
-        configuration:
-          inputResources:
-            - name: script_conditional
-        execution:
-          onExecute:
-            - echo "Executing step_A"
-            - printenv
-     
-      - name: step_B
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step_A
-        execution:
-          onExecute:
-            - echo "Executing step_B"
-            - printenv
-      - name: step_C
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step_A
-        execution:
-          onExecute:
-            - echo "Executing step_C"
-            - printenv
-      - name: conditional_D
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step_B
-              status:
-                - success
-            - name: step_C
-              status:
-                - failure
-                - skipped
-                - cancelled
-        execution:
-          onExecute:
-            - echo "Executing conditional_D"
-            - printenv
-            
+ 
