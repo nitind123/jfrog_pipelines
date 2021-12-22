@@ -244,6 +244,7 @@ resources:
         include: ^{{gitBranch}}$
       files:
         include: node.sh
+      shallowDepth: 0
   - name: propertyBag
     type: PropertyBag
     configuration:
