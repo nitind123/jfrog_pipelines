@@ -220,7 +220,7 @@ resources:
       branches:
         include: ^{{gitBranch}}$
       buildOn:
-        commit: true
+        commit: false
   - name: newRepo
     type: GitRepo
     configuration:
