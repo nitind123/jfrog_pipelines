@@ -221,6 +221,7 @@ resources:
         include: ^{{gitBranch}}$
       buildOn:
         commit: false
+        pullRequestCreate: true
   - name: newRepo
     type: GitRepo
     configuration:
