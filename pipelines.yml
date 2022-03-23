@@ -219,6 +219,8 @@ resources:
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
+      buildOn:
+        commit: true
   - name: newRepo
     type: GitRepo
     configuration:
