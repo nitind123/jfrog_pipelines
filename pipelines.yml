@@ -238,8 +238,8 @@ resources:
         include: ^{{gitBranch}}$
       files:
         include: echo.sh
-      pin:
-        versionId: 421
+#       pin:
+#         versionId: 421
   - name: script_2
     type: GitRepo
     configuration:
