@@ -1,10 +1,5 @@
 resources:
 
-# #   - name: test1
-# #     type: shippable/GitRepo
-# #     syntaxVersion: 1.0.1
-# #     configuration:
-# #       name: test
 # #   - name: shippablefoo
 # #     type: shippable/foo
 # #     syntaxVersion: latest
@@ -298,7 +293,7 @@ pipelines:
             - name: demoBash_monorepo
         execution:
           onExecute:
-            - echo "Executing demoBash_monorepo"
+            - echo "Executing demoBash_monorepo_2"
             
 #       - name: demoBash_monorepo_3_test
 #         type: Bash
