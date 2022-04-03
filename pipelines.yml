@@ -293,7 +293,7 @@ pipelines:
             - name: demoBash_monorepo
         execution:
           onExecute:
-            - echo "Executing demoBash_monorepo_2"
+            - echo "Executing demoBash_monorepo_2**"
             
 #       - name: demoBash_monorepo_3_test
 #         type: Bash
