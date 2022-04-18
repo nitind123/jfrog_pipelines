@@ -1,4 +1,5 @@
 resources:
+
   - name: myRepo_d
     type: GITRepo
     configuration:
