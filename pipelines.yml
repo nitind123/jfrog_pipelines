@@ -1,100 +1,22 @@
-resources:
-
-  - name: myRepo_d
-    type: GITRepo
-    configuration:
-      path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-  - name: newRepo
-    type: GitRepo
-    configuration:
-      path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-  - name: script_1
-    type: GitRepo
-    configuration:
-      path: deepikasl/sample-script
-      gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-      files:
-        include: echo.sh
-  - name: script_2
-    type: GitRepo
-    configuration:
-      path: deepikasl/sample-script
-      gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-      files:
-        include: node.sh
-  - name: propertyBag
-    type: PropertyBag
-    configuration:
-      foo: bar
-      foo1: bar1
-      foo2: bar2
-
 pipelines:
-  - name: demo_manual
+  - name: pipelines_S_B_Jen_0023
     steps:
-      - name: manual_trigger
+      - name: S_B_Jen_0023_1
+        type: Jenkins
+        configuration:
+          jenkinsJobName: var_output_job    # Jenkins job/pipeline name. required
+          priority: 1
+          buildParameters:
+            key1: 1
+            key2: 2
+          integrations:
+            - name: jenkins
+
+      - name: S_B_Jen_0023_2
         type: Bash
         configuration:
-          inputResources:
-            - name: script_2
-          outputResources:
-            - name: propertyBag
-        execution:
-          onExecute:
-            - write_output propertyBag "foo=$run_number"
-  - name: demo_monorepo
-    steps: 
-      - name: demoBash_main
-        type: Bash
-        configuration:
-          inputResources:
-            - name: script_1
-#             - name: propertyBag
-        execution:
-          onExecute:
-            - echo "Executing demoBash_main"
-      - name: demoBash_monorepo
-        type: Bash
-        configuration:
-          inputResources:
-            - name: myRepo_d
-              trigger: false
-#             - name: propertyBag
           inputSteps:
-            - name: demoBash_main
+            - name : S_B_Jen_0023_1        
         execution:
           onExecute:
-            - echo "Executing demoBash_monorepo"
-      - name: demoBash_monorepo_2
-        type: Bash
-        configuration:
-          inputResources:
-            - name: newRepo
-#             - name: myRepo
-          inputSteps:
-            - name: demoBash_monorepo
-        execution:
-          onExecute:
-            - echo "Executing demoBash_monorepo"
-#             - echo "hi"
-#             - echo "hello"
-#       - name: demoBash_monorepo_3_test
-#         type: Bash
-#         configuration:
-#           inputSteps:
-#             - name: demoBash_monorepo_2
-#         execution:
-#           onExecute:
-#             - echo "Executing demoBash_monorepo_2_test"
-            
-            
+            - echo "hello world"
