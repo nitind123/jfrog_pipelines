@@ -227,6 +227,12 @@ resources:
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
+      buildOn:
+        commit: false
+        pullRequestCreate: true
+        pullRequestClose: true
+        releaseCreate: true
+        tagCreate: true
   - name: script_1
     type: GitRepo
     configuration:
