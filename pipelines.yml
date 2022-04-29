@@ -248,7 +248,7 @@ resources:
       path: deepikasl/sample-script
       gitProvider: deepikaGithub
       branches:
-        include: ^{{gitBranch}}$
+        include: test'
       files:
         include: node.sh
   - name: propertyBag
