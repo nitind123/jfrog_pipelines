@@ -1,4 +1,5 @@
 resources:
+
   - name: artifactory_go_example_gb
     type: GitRepo
     configuration:
