@@ -5,30 +5,8 @@ resources:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
-        include: ^{{gitBranch}}$
-  - name: newRepo
-    type: GitRepo
-    configuration:
-      path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-  - name: script_1
-    type: GitRepo
-    configuration:
-      path: deepikasl/sample-script
-      gitProvider: deepikaGithub
-  - name: script_2
-    type: GitRepo
-    configuration:
-      path: deepikasl/sample-script
-      gitProvider: deepikaGithub
-  - name: propertyBag
-    type: PropertyBag
-    configuration:
-      foo: bar
-      foo1: bar1
-      foo2: bar2
+        include: .*
+        exclude: ^master$
 
 pipelines:
   - name: demo_manual
@@ -37,65 +15,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: script_2
-              trigger: false
-          outputResources:
-            - name: propertyBag
-        execution:
-          onExecute:
-            - write_output propertyBag "foo=$run_number"
-            - printenv
-  - name: demo_monorepo
-    steps: 
-      - name: demoBash_main
-        type: Bash
-        configuration:
-          inputResources:
-            - name: script_1
-#             - name: propertyBag
-        execution:
-          onExecute:
-            - echo "Executing demoBash_main"
-      - name: demoBash_monorepo
-        type: Bash
-        configuration:
-#           nodePool: deepikaTestNP
-          inputResources:
             - name: myRepo_d
-              trigger: false
-#             - name: propertyBag
-          inputSteps:
-            - name: demoBash_main
         execution:
           onExecute:
-            - echo "Executing demoBash_monorepo"
             - printenv
-            - |
-              if [ -z "$step_demoBash_main_statusName" ];
-              then
-                 echo "env step_demoBash_main_statusName is not present"
-                 exit 1
-              fi
-      - name: demoBash_monorepo_2
-        type: Bash
-        configuration:
-          inputResources:
-            - name: newRepo
-#             - name: myRepo
-          inputSteps:
-            - name: demoBash_monorepo
-        execution:
-          onExecute:
-            - echo "Executing demoBash_monorepo"
-            
-            
-#       - name: demoBash_monorepo_3_test
-#         type: Bash
-#         configuration:
-#           inputSteps:
-#             - name: demoBash_monorepo_2
-#         execution:
-#           onExecute:
-#             - echo "Executing demoBash_monorepo_2_test"
-            
-            
