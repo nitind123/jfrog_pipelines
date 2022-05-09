@@ -302,7 +302,6 @@ pipelines:
             - echo "hi"
             - echo "hah"
             - echo "hello"
-            - echo "lala"
             
 #       - name: demoBash_monorepo_3_test
 #         type: Bash
