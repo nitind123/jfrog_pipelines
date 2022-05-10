@@ -14,6 +14,14 @@ resources:
       gitProvider: deepikaGithub
       branches:
         exclude: ^master$
+  - name: myRepo_6
+    type: GITRepo
+    configuration:
+      path: deepikasl/jfrog_pipelines
+      gitProvider: deepikaGithub
+      branches:
+        include: (master|(release|milestone)\/[0-9]+-.*|(preRelease|bugfix|feature|hotfix|infra)\/.*)
+        exclude: ^master$
 
 pipelines:
   - name: demo_manual
