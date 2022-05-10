@@ -7,6 +7,13 @@ resources:
       branches:
         include: ^monorepo4$
         exclude: ^master$
+  - name: myRepo_5
+    type: GITRepo
+    configuration:
+      path: deepikasl/jfrog_pipelines
+      gitProvider: deepikaGithub
+      branches:
+        exclude: ^master$
 
 pipelines:
   - name: demo_manual
