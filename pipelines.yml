@@ -5,7 +5,7 @@ resources:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
-        include: .+
+        include: ^(master|preRelease\/jfin.+rc)$
         exclude: ^master$
 
 pipelines:
