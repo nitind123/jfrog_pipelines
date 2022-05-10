@@ -23,6 +23,7 @@ resources:
         include: (master|(release|milestone)\/[0-9]+-.*|(preRelease|bugfix|feature|hotfix|infra)\/.*)
         exclude: ^master$
 
+
 pipelines:
   - name: demo_manual
     steps:
