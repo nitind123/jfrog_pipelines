@@ -5,6 +5,7 @@ resources:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
 
+
 pipelines:
   - name: maatrix_bash_pipeline
     steps:
