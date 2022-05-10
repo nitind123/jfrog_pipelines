@@ -8,6 +8,7 @@ resources:
         include: .+
         exclude: ^master$
 
+
 pipelines:
   - name: demo_manual
     steps:
