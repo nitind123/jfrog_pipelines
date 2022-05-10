@@ -19,3 +19,4 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - echo "hi"
