@@ -8,7 +8,6 @@ resources:
         include: .+
         exclude: ^master$
 
-
 pipelines:
   - name: demo_manual
     steps:
@@ -20,3 +19,4 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - echo "hi"
