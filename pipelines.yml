@@ -5,7 +5,7 @@ resources:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
-        include: (master|(release|milestone)\/[0-9]*-.*|(preRelease|bugfix|feature|hotfix|infra)\/.*)
+        include: ^monorepo4$
         exclude: ^master$
 
 pipelines:
