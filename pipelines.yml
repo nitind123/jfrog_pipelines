@@ -257,6 +257,10 @@ resources:
       foo: bar
       foo1: bar1
       foo2: bar2
+  - name: propertyBag_2
+    type: PropertyBag
+    configuration:
+      foo: ${run_id}
 
 pipelines:
   - name: demo_manual
