@@ -5,7 +5,7 @@ resources:
       path: deepikasl/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
-        include: ^monorepo4$
+        include: ^monorepo*$
         exclude: ^master$
   - name: myRepo_5
     type: GITRepo
