@@ -7,7 +7,7 @@ resources:
       branches:
         include: ^monorepo*$
         exclude: ^master$
-    - name: myRepo_5
+  - name: myRepo_5
     type: GITRepo
     configuration:
       path: deepikasl/jfrog_pipelines
@@ -30,7 +30,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: myRepo_d
+            - name: myRepo_d1
         execution:
           onExecute:
             - printenv
