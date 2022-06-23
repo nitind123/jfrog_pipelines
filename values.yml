@@ -1,0 +1,5 @@
+myRepo:
+  gitProvider: deepikaGithub
+  path: deepikasl/jfrog_pipelines
+myNodePool:
+  name: static_np_1
