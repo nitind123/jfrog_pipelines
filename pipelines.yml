@@ -30,7 +30,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: myRepo_d1
+            - name: myRepo_d
         execution:
           onExecute:
             - printenv
