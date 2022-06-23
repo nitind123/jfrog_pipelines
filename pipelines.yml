@@ -1,38 +1,50 @@
+template: true   # required for local templates
+valuesFilePath: ./values.yml
+
 resources:
-  - name: myRepo_d
-    type: GITRepo
+  - name: myFirstRepo
+    type: GitRepo
     configuration:
-      path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
+      # SCM integration where the repository is located
+      gitProvider: {{ .Values.myRepo.gitProvider }} # this will be replaced from values.yml
+      # Repository path, including org name/repo name
+      path: {{ .Values.myRepo.path }} # this will be replaced from values.yml
       branches:
-        include: ^monorepo*$
-        exclude: ^master$
-  - name: myRepo_5
-    type: GITRepo
+        # Specifies which branches will trigger dependent steps
+        include: master
+
+  - name: myPropertyBag
+    type: PropertyBag
     configuration:
-      path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
-      branches:
-        exclude: ^master$
-  - name: myRepo_6
-    type: GITRepo
+      commitSha: 1
+      runID: 1
+      
+  - name: myPropertyBag2
+    type: PropertyBag
     configuration:
-      path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub
-      branches:
-        include: (master|(release|milestone)\/[0-9]+-.*|(preRelease|bugfix|feature|hotfix|infra)\/.*)
-        exclude: ^master$
+      commitSha: 2
+      runID: 2
 
 pipelines:
-  - name: demo_manual
+  - name: my_first_pipeline
+    outputResources:
+      - name: myPropertyBag
     steps:
-      - name: manual_trigger
+      - name: p1_s1
         type: Bash
         configuration:
           inputResources:
-            - name: myRepo_d
+            # Sets up step to be triggered when there are commit events to myFirstRepo
+            - name: myFirstRepo
         execution:
           onExecute:
-            - printenv
-            - echo "hi"
-
+            # Data from input resources is available as env variables in the step
+            - echo $res_myFirstRepo_commitSha
+            # The next two commands add variables to run state, which is available to all downstream steps in this run
+            # Run state documentation: https://www.jfrog.com/confluence/display/JFROG/Creating+Stateful+Pipelines#CreatingStatefulPipelines-RunState
+            - add_run_variables current_runid=$run_id
+            - add_run_variables commitSha=$res_myFirstRepo_commitSha
+            # This variable is written to pipeline state in p1_s3.
+            # So this will be empty during first run and will be set to prior run number in subsequent runs
+            # Pipeline state documentation: https://www.jfrog.com/confluence/display/JFROG/Creating+Stateful+Pipelines#CreatingStatefulPipelines-PipelineState
+            - echo "Previous run ID is $prev_runid"
