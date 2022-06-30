@@ -1,43 +1,39 @@
 resources:
-  - name: npmHelloWorld_repo
+  - name: npm_repo_jfp_example
     type: GitRepo
     configuration:
-      path: deepikasl/npmHelloWorld
       gitProvider: deepikaGithub
+      path: deepikasl/jfrog_pipelines
+      branches:
+        include: npmBuild1
 
-  - name: npm_build_info_publish
+  - name: npm_buildinfo_jfp_example
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
-      buildName: npm_publish
-      buildNumber: 1
-  
-  - name: npm_build_info_promoted
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: art
-      buildName: npm+promote
-      buildNumber: 1
-      
+      sourceArtifactory: demoArt
+
 pipelines:
-  - name: npm_example
+  - name: npm_pipeline_jfp_example
     steps:
-      - name: build_npm
+      - name: npm_build_step
         type: NpmBuild
         configuration:
-          npmArgs: verbose
           repositoryName: npm-virtual
-          sourceLocation: .
-          inputResources:
-            - name: npmHelloWorld_repo
+          sourceLocation: .      # required, location of package.json file
           integrations:
-            - name: art
+            - name:  demoArt  # required
+          inputResources:
+            - name: npm_repo_jfp_example         # required
 
-      - name: publish_npm
+      - name: npm_publish_step
         type: NpmPublish
         configuration:
-          repositoryName: npm-local
-          inputSteps:
-            - name: build_npm
+          # for payloadType npm:
+          repositoryName: npm-virtual        # required, npm repository name on artifactory
+          autoPublishBuildInfo: true       # optional
           integrations:
-            - name: art
+            - name: demoArt      # required
+          inputSteps:
+            - name: npm_build_step                # required
+          outputResources:
+            - name: npm_buildinfo_jfp_example                 # optional
