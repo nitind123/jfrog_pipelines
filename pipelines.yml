@@ -1,7 +1,5 @@
-pipelines:
- - name: A_Extension_0019
-   steps:
-      - name: A_Extension_0019
-        type: UploadArtifact
-        configuration:
-          targetPath: "test-automation-generic-local/A_Extension_0019"
+resources:
+  - name: ubuntu_18_static_vm
+    type: SampleResource
+    configuration:
+      foo: bar
