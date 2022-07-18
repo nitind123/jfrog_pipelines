@@ -1,33 +1,11 @@
-resources:
-  - name: myRepo
-    type: GITRepo
-    configuration:
-      path: nitind123/jfrog_pipelines
-      gitProvider: deepikaGithub
-      branches:
-        include: ^{{gitBranch}}$
-  - name: propertyBag
-    type: PropertyBag
-    configuration:
-      foo: bar
-      foo1: bar1
-      foo2: bar2
+
 
 pipelines:
   - name: demo_manual
     configuration:
        affinityGroup: deepika
     steps:
-      - name: manual_trigger
-        type: Bash
-        configuration:
-          inputResources:
-            - name: myRepo
-          outputResources:
-            - name: propertyBag
-        execution:
-          onExecute:
-            - echo "hello"
+      
       - name: jenkins_test
         type: Jenkins
         configuration:
