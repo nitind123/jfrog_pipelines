@@ -10,8 +10,7 @@ pipelines:
         type: Jenkins
         configuration:
 #           affinityGroup: deepika
-          inputSteps:
-            - name: manual_trigger
+          
           jenkinsJobName: Pipe-Performace
           integrations:
             - name: deepikaJenkins
