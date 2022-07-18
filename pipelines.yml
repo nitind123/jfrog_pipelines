@@ -34,6 +34,6 @@ pipelines:
 #           affinityGroup: deepika
           inputSteps:
             - name: manual_trigger
-          jenkinsJobName: testPipeline
+          jenkinsJobName: Pipe-Performace
           integrations:
             - name: deepikaJenkins
