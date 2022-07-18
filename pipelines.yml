@@ -1,106 +1,39 @@
 resources:
-#   - name: test
-#     type: shippable/GitRepo
-#     syntaxVersion: 1.0.0
-#     configuration:
-#       name: test
-#   - name: test1
-#     type: shippable/GitRepo
-#     syntaxVersion: 1.0.1
-#     configuration:
-#       name: test
-#   - name: shippablefoo
-#     type: shippable/foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: foo
-#     type: foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: foofoo
-#     type: foo/foo
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-#   - name: DockerPsh
-#     type: DockerPsh
-#     syntaxVersion: latest
-#     configuration:
-#       name: test
-  - name: gitRepo2
-    type: GitRepo
+  - name: myRepo
+    type: GITRepo
     configuration:
       path: deepikasl/jfrog_pipelines
-      gitProvider: deepikaGithub2
+      gitProvider: deepikaGithub
+      branches:
+        include: ^{{gitBranch}}$
+  - name: propertyBag
+    type: PropertyBag
+    configuration:
+      foo: bar
+      foo1: bar1
+      foo2: bar2
 
 pipelines:
-  - name: bash_pipeline2
+  - name: demo_manual
+#     configuration:
+#       affinityGroup: deepika
     steps:
-#       - name: sampleStep
-#         type: shippable/sampleStep
-#         syntaxVersion: 1.11.1
-#         configuration:
-#           inputSteps:
-#             - name: testBash
-# #         execution:
-# #           onExecute:
-# #             - echo "Executing testBash.."
-      - name: testBash2
+      - name: manual_trigger
         type: Bash
         configuration:
-          environmentVariables:
-            image_tag: latest
-#           nodePool: u16-dynamic
-#           runtime:            
-#             type: image
-#             image:
-#               custom:
-#                 registry: dockerRegistry
-#                 name: shippabledocker/jfreq
-#                 tag: $image_tag
-#                 autoPull: true
           inputResources:
-            - name: gitRepo2
-            
-#           runtime:            
-#             type: image
-#             image:
-#               auto:
-#                 language: node
-#                 versions:
-#                   - "12.14.0"
+            - name: myRepo
+          outputResources:
+            - name: propertyBag
         execution:
           onExecute:
-            - printenv
-            - df -h
-            - echo $"step_image_tag='$image_tag'"
-            - echo $artifactoryRegistry_url
-            - echo $image_tag
-            - echo "Executing testBash.."
-            - restore_cache_files pipeline_state_cache cache.txt
-            - add_pipeline_variables pipelineId=$pipeline_id
-            - add_run_variables runId=$run_number	
-            - echo "state=$run_number" > cache.txt
-            - add_cache_files cache.txt pipeline_state_cache
-            - echo "state=$run_number" > pipeline_state.txt
-            - add_pipeline_files pipeline_state.txt pipeline_state_file
-            - echo "state=$run_number" > run_state.txt
-            - add_run_files run_state.txt run_state_file
-      - name: restoreBash2
-        type: Bash
+            - echo "hello"
+      - name: jenkins_test
+        type: Jenkins
         configuration:
+#           affinityGroup: deepika
           inputSteps:
-            - name: testBash2
-#           runtime:            
-#             type: image
-#             image:
-#               custom:
-#                 name: shippabledocker/jfreq
-#                 tag: latest
-        execution:
-          onExecute:
-            - echo "Executing restoreBash.."
-            - restore_pipeline_files pipeline_state_file pipeline_state.txt
-            - restore_run_files run_state_file run_state.txt
+            - name: manual_trigger
+          jenkinsJobName: testPipeline
+          integrations:
+            - name: deepikaJenkins
