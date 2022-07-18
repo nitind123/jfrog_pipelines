@@ -35,4 +35,6 @@ pipelines:
           inputSteps:
             - name: manual_trigger
           jenkinsJobName: Pipe-Performace
+          integrations:
+            - name: deepikaJenkins
           
