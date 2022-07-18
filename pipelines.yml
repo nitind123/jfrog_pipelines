@@ -15,8 +15,8 @@ resources:
 
 pipelines:
   - name: demo_manual
-#     configuration:
-#       affinityGroup: deepika
+    configuration:
+       affinityGroup: deepika
     steps:
       - name: manual_trigger
         type: Bash
