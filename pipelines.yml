@@ -2,7 +2,7 @@ resources:
   - name: myRepo
     type: GITRepo
     configuration:
-      path: deepikasl/jfrog_pipelines
+      path: nitind123/jfrog_pipelines
       gitProvider: deepikaGithub
       branches:
         include: ^{{gitBranch}}$
